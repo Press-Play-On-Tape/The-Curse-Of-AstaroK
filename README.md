@@ -182,12 +182,12 @@ You will encounter different enemies in the dungeons.
 
 <img src="/Astarok_Enemy_01.gif" data-canonical-src="/Astarok_Enemy_01.gif" width="256px" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="/Astarok_Enemy_02.gif" data-canonical-src="/Astarok_Enemy_02.gif" width="256px" />
 <br/>
-<sup>Fig 1: Skeleton&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fig 2: Small Werewolf</sup>
+<sup>Fig 1: Skeleton&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fig 2: Small Werewolf</sup>
 <br/>
 
 <img src="/Astarok_Enemy_03.gif" data-canonical-src="/Astarok_Enemy_03.gif" width="256px" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="/Astarok_Enemy_04.gif" data-canonical-src="/Astarok_Enemy_04.gif" width="256px" />
 <br/>
-<sup>Fig 3: Large Werewolf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fig 4: Gelatinous Cube</sup>
+<sup>Fig 3: Large Werewolf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fig 4: Gelatinous Cube</sup>
 <br/>
 
 <img src="/Astarok_Enemy_05.gif" data-canonical-src="/Astarok_Enemy_03.gif" width="256px" /><br/>
@@ -197,7 +197,7 @@ You will encounter different enemies in the dungeons.
 
 
 | Type | Description |
-| --- | :---: | :---: | --- |
+| --- | :--- |
 | Skeleton | The Skeleton is not affected by the Venom Mist run combination |
 | Small&nbsp;Werewolf | The small werewolf is affected by the Venom Mist normally - unlike the large werewolf which is affected more. |
 | Gelatinous&nbsp;Cube | The Gelatinous Cube is affected by the Fire Blaze more than other enemies - twice the damage is applied in the second cast (10 DMG points instead of the default 5).  Gelatinous Cubes can also steal items from you during play, watch out! |
