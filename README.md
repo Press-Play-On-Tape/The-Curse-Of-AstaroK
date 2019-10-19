@@ -190,7 +190,7 @@ You will encounter different enemies in the dungeons.
 <sup>Fig 3: Large Werewolf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fig 4: Gelatinous Cube</sup>
 <br/>
 
-<img src="/Astarok_Enemy_05.gif" data-canonical-src="/Astarok_Enemy_03.gif" width="256px" />
+<img src="/Astarok_Enemy_05.gif" data-canonical-src="/Astarok_Enemy_03.gif" width="256px" /><br/>
 <br/>
 <sup>Fig 5: AstaroK</sup>
 <br/>
