@@ -180,7 +180,7 @@ Notes:
 
 You will encounter different enemies in the dungeons.
 
-<img src="/Astarok_Enemy_01.png" data-canonical-src="/Astarok_Enemy_01.png" width="256px" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="/Astarok_Enemy_02.png" data-canonical-src="/Astarok_Enemy_02.png" width="256px" />
+<img src="/Astarok_Enemy_02.png" data-canonical-src="/Astarok_Enemy_02.png" width="256px" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="/Astarok_Enemy_01.png" data-canonical-src="/Astarok_Enemy_01.png" width="256px" />
 <br/>
 <sup>Fig 1: Skeleton&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fig 2: Small Werewolf</sup>
 <br/>
