@@ -182,18 +182,19 @@ You will encounter different enemies in the dungeons.
 
 <img src="/Astarok_Enemy_01.gif" data-canonical-src="/Astarok_Enemy_01.gif" width="256px" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="/Astarok_Enemy_02.gif" data-canonical-src="/Astarok_Enemy_02.gif" width="256px" />
 <br/>
-<sup>Fig 1: Skeleton&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fig 2: Small Werewolf</sup>
+<sup>Fig 1: Skeleton&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fig 2: Small Werewolf</sup>
 <br/>
 
 <img src="/Astarok_Enemy_03.gif" data-canonical-src="/Astarok_Enemy_03.gif" width="256px" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="/Astarok_Enemy_04.gif" data-canonical-src="/Astarok_Enemy_04.gif" width="256px" />
 <br/>
-<sup>Fig 3: Large Werewolf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fig 4: Gelatinous Cube</sup>
+<sup>Fig 3: Large Werewolf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fig 4: Gelatinous Cube</sup>
 <br/>
 
 <img src="/Astarok_Enemy_05.gif" data-canonical-src="/Astarok_Enemy_03.gif" width="256px" />
 <br/>
 <sup>Fig 5: AstaroK</sup>
 <br/>
+
 
 | Type | Description |
 | --- | :---: | :---: | --- |
