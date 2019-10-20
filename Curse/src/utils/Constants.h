@@ -85,10 +85,12 @@ namespace Constants {
   constexpr uint8_t DialogueDelay_Fight_Damage_Apply = DialogueDelay_Fight_Damage_PrevRoll + 1;
   constexpr uint8_t DialogueDelay_Fight_Health = DialogueDelay_Fight_Damage_Apply + 1;
   constexpr uint8_t DialogueDelay_Enemy_HP_Steal = DialogueDelay_Fight_Health + 1;
-  constexpr uint8_t DialogueDelay_Enemy_Roll = DialogueDelay + 1;
+  constexpr uint8_t DialogueDelay_Enemy_Roll = DialogueDelay_Enemy_HP_Steal + 1;
   constexpr uint8_t DialogueDelay_Enemy_Damage = DialogueDelay_Enemy_Roll + 1;
   constexpr uint8_t DialogueDelay_Enemy_Damage_Apply = DialogueDelay_Enemy_Damage + 1;
   constexpr uint8_t DialogueDelay_Enemy_Item_Steal = DialogueDelay_Enemy_Damage_Apply + 1;
+  constexpr uint8_t DialogueDelay_End_Of_Roll_Start = DialogueDelay_Enemy_Item_Steal + 1;
+  constexpr uint8_t DialogueDelay_End_Of_Roll_End = DialogueDelay_End_Of_Roll_Start + 60;
   constexpr uint8_t Player_Dead_Init = 1;
   constexpr uint8_t Player_Dead_End = 2;
 

@@ -531,6 +531,13 @@ void playGame_Update() {
 
 				switch (playGameVars.counter) {
 
+					case Constants::DialogueDelay_End_Of_Roll_Start ... Constants::DialogueDelay_End_Of_Roll_End:
+						playGameVars.counter--;
+						if (justPressed & A_BUTTON || playGameVars.counter == Constants::DialogueDelay_End_Of_Roll_Start) {
+							playGameVars.counter = Constants::DialogueDelay_Fight_Roll;
+						}
+						break;
+
 					case Constants::DialogueDelay_Fight_Roll:
 						playGameVars.message.renderRequired = true;
 						if (justPressed & A_BUTTON) {
@@ -757,7 +764,8 @@ void playGame_Update() {
 
 								playGameVars.runes.checkRuneCombination(playGameVars.player, playGameVars.matchedRuneCombination);
 								playGameVars.message.message = nullptr;
-								playGameVars.counter = Constants::DialogueDelay_Fight_Roll;
+								playGameVars.counter = Constants::DialogueDelay_End_Of_Roll_End;
+								//DialogueDelay_Fight_Roll;
 
 							}
 								

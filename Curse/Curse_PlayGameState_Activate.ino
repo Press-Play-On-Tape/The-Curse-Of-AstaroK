@@ -4,9 +4,9 @@ constexpr World world PROGMEM {
 	30,  /* cloudsXPos */
 	120, /* buildingXPos */
 	60,  /* foregroundXPos */
-	// -140,  /* cloudsXPos */
-	// -230, /* buildingXPos */
-	// -170,  /* foregroundXPos */
+	// -80,  /* cloudsXPos */
+	// -170, /* buildingXPos */
+	// -110,  /* foregroundXPos */
 	1,  /* dungeon */
 	{ 
 		48, 159,
