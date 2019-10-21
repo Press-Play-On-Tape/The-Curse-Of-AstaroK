@@ -405,19 +405,19 @@ void Player::render(Arduboy2Ext &arduboy, ArdBitmap<128, 64> &ardBitmap, bool re
 }
 
 void Player::incDef(const uint8_t def) {
-  this->def = (this->def + def > 255 ? 255 : this->def + def);
+  this->def = (static_cast<uint8_t>(this->def + def) < this->def ? 255 : this->def + def);
 }
 
 void Player::incGP(const uint8_t gp) {
-  this->gp = (this->gp + gp > 255 ? 255 : this->gp + gp);
+  this->gp = (static_cast<uint8_t>(this->gp + gp) < this->gp ? 255 : this->gp + gp);
 }
 
 void Player::incHP(const uint8_t hp) {
-  this->hp = (this->hp + hp > 100 ? 100 : this->hp + hp);
+  this->hp = (static_cast<uint8_t>(this->hp + hp) > 100 ? 100 : this->hp + hp);
 }
 
 void Player::incSP(const uint8_t sp) {
-  this->sp = (this->sp + sp > 255 ? 255 : this->sp + sp);
+  this->sp = (static_cast<uint8_t>(this->sp + sp) < this->sp ? 255 : this->sp + sp);
 }
 
 void Player::decHP(const uint8_t hp) {
