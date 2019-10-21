@@ -20,8 +20,6 @@
   Boston, MA  02111-1307  USA
 */
 
-#define ARDUBOY_CORE_WIRING_C
-
 #include "wiring_private.h"
 
 // the prescaler is set so that timer0 ticks every 64 clock cycles, and the
@@ -40,11 +38,6 @@
 volatile unsigned long timer0_overflow_count = 0;
 volatile unsigned long timer0_millis = 0;
 static   unsigned char timer0_fract = 0;
-
-volatile unsigned char button_ticks_hold = 0;
-volatile unsigned char button_ticks_now  = 0;
-volatile unsigned char button_ticks_last = 0;
-volatile unsigned char bootloader_timer  = 0;
 
 #if defined(__AVR_ATtiny24__) || defined(__AVR_ATtiny44__) || defined(__AVR_ATtiny84__)
 ISR(TIM0_OVF_vect)
@@ -71,9 +64,8 @@ ISR(TIMER0_OVF_vect, ISR_NAKED)
 */
     // save registers and SREG
     asm volatile(
-      "    push r16                     \n\t"
-      "    in   r16, __SREG__           \n\t"
-      "    push r16                     \n\t" //use as more functional temp reg
+      "    push r0                      \n\t"
+      "    in   r0, __SREG__            \n\t" 
       "    push r1                      \n\t"
       "    clr  r1                      \n\t" //zero reg
       "    push r24                     \n\t"
@@ -94,70 +86,22 @@ ISR(TIMER0_OVF_vect, ISR_NAKED)
       "    sts  %[fract], r24           \n\t" // timer0_fract = f;
       "    ld   r24, z                  \n\t" //timer0_millis += millis_inc
       "    add  r24, r25                \n\t"
-      "    st   z, r24                  \n\t"
       "    ldd  r25, z+1                \n\t"
       "    adc  r25, r1                 \n\t"
-      "    std  z+1, r25                \n\t" // r25 = (millis >>8)
-      "    ldd  r16, z+2                \n\t"
-      "    adc  r16, r1                 \n\t"
-      "    std  z+2, r16                \n\t" // r16 = (millis >>16)
-      "    ldd  r24, z+3                \n\t"
+      "    st   z, r24                  \n\t"
+      "    std  z+1, r25                \n\t"
+      "    ldd  r24, z+2                \n\t"
+      "    ldd  r25, z+3                \n\t"
       "    adc  r24, r1                 \n\t"
-      "    std  z+3, r24                \n\t"
-
-      "    eor  r16, r25                \n\t" //button_ticks_now = (millis >> 12)
-      "    andi r16, 0x0F               \n\t"
-      "    eor  r16, r25                \n\t"
-      "    swap r16                     \n\t"
-      "    sts  %[buttons_now], r16     \n\t"
+      "    adc  r25, r1                 \n\t"
+      "    std  z+2, r24                \n\t"
+      "    std  z+3, r25                \n\t"
       :
       : [millis]      "z" (&timer0_millis),
         [fract]       ""  (&timer0_fract),
-        [buttons_now] ""  (&button_ticks_now),
         [millis_inc]  "M" (MILLIS_INC),
         [fract_inc]   "M" (256 - FRACT_INC), // negated for subi instruction
         [fract_max]   "M" (FRACT_MAX)
-      :
-    );
-    //Arduboy bootloader and reset button feature
-    asm volatile (
-      "    rcall scan_buttons           \n\t"
-      "    cpse r24, r1                 \n\t" //if (buttons) button_ticks_last = (uint8_t)(Millis >> 12)
-      "    sts  %[apd], r16             \n\t"
-#ifdef     AB_DEVKIT
-      "    cpi	r24, 0x50	            \n\t" // test DevKit UP+DOWN for bootloader
-#else
-      "    cpi	r24, 0x90	            \n\t" // test arduboy UP+DOWN for bootloader
-#endif
-      "    brne 5f                      \n\t"
-      "2:  lds  r16, %[hold]            \n\t"
-      "    sub  r25, r16                \n\t" // (uint8_t)(timer0_millis >> 8) - button_ticks_last
-      "    cpi  r25, 6                  \n\t"
-      "    brcs 6f                      \n\t" // if ((millis - hold) >= 6) {
-      "3:  ldi	r24, 0x77               \n\t"
-      "    sts	0x800, r24              \n\t"
-      "    sts	0x801, r24              \n\t"
-      "    ldi	r24, %[value1]          \n\t"
-      "    ldi	r25, %[value2]          \n\t"
-      "    sts   %[wdtcsr], r24         \n\t"
-      "    sts   %[wdtcsr], r25         \n\t"
-      "    rjmp .-2                     \n\t" // }
-      "5:                               \n\t"
-      "    sts  %[hold], r25            \n\t" //button_ticks_hold = (uint8_t)(Millis >> 8)
-      "6:                               \n\t"
-      "    lds  r24, %[btimer]          \n\t" //if (bootloader_timer--) {
-      "    subi r24, 1                  \n\t"
-      "    brcs 7f                      \n\t"
-      "    sts  %[btimer],r24           \n\t"
-      "    breq 3b                      \n\t" // if (bootloader_timer == 0) runBootLoader;
-      "7:                               \n\t" //}
-      :
-      : [hold]      ""  (&button_ticks_hold),
-        [apd]       ""  (&button_ticks_last),
-        [btimer]    ""  (&bootloader_timer),
-        [value1]    "M" ((uint8_t)(_BV(WDCE) | _BV(WDE))),
-        [value2]    "M" ((uint8_t)(_BV(WDE))),
-        [wdtcsr]    "M" (_SFR_MEM_ADDR(WDTCSR))
       :
     );
     //timer0_overflow_count++;
@@ -173,53 +117,18 @@ ISR(TIMER0_OVF_vect, ISR_NAKED)
       "    adc  r25, r1                 \n\t"
       "    std  z+2, r24                \n\t"
       "    std  z+3, r25                \n\t"
-    :
-    : "z" (&timer0_overflow_count)
-    );
-    //restore registers and retirn from interrupt
-    asm volatile (
+    //restore registers and return from interrupt
       "    pop  r31                     \n\t"
       "    pop  r30                     \n\t"
       "    pop  r25                     \n\t"
       "    pop  r24                     \n\t"
       "    pop  r1                      \n\t"
-      "    pop  r16                     \n\t"
-      "    out  __SREG__, r16           \n\t"
-      "    pop  r16                     \n\t"
+      "    out  __SREG__, r0            \n\t"
+      "    pop  r0                      \n\t"
       "    reti                         \n\t"
-      ".global scan_buttons             \n\t"
-      "scan_buttons:                    \n\t"
-#ifdef     AB_DEVKIT
-      "    in	r24, %[pinb]            \n\t" // down, left, up buttons
-      "    com  r24                     \n\t"
-      "    andi r24, 0x70               \n\t"
-      "    sbis %[pinc], 6	            \n\t" // right button
-      "    ori	r24, 0x04	            \n\t"
-      "    sbis %[pinf], 7	            \n\t" // A button
-      "    ori	r24, 0x02	            \n\t"
-      "    sbis %[pinf], 6	            \n\t" // B button
-      "    ori	r24, 0x01	            \n\t"
-#else
-      "    in	r24, %[pinf]            \n\t" // directional buttons
-      "    com  r24                     \n\t"
-      "    andi r24, 0xF0               \n\t"
-      "    sbis %[pine], 6	            \n\t" // A button
-      "    ori	r24, 0x08	            \n\t"
-      "    sbis %[pinb], 4	            \n\t" // B button
-      "    ori	r24, 0x04	            \n\t"
-#endif
-      "    ret          	            \n\t" // Z flag set from AND when no button is pressed
-      :
-      : [pinf]      "I" (_SFR_IO_ADDR(PINF)),
-        [pine]      "I" (_SFR_IO_ADDR(PINE)),
-        [pinc]      "I" (_SFR_IO_ADDR(PINC)),
-        [pinb]      "I" (_SFR_IO_ADDR(PINB))
+    :
+    : "z" (&timer0_overflow_count)
     );
-}
-
-unsigned char buttonsIdleTime()
-{
-  return button_ticks_now - button_ticks_last;
 }
 
 unsigned char millisChar()
