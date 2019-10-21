@@ -9,6 +9,7 @@
 #include "src/utils/FadeEffects.h"
 #include "src/utils/FlashStringHelper.h"
 #include "src/ardBitmap/ArdBitmap.h"
+#include <Arduboy2Beep.h>
 
 #ifndef DEBUG
 ARDUBOY_NO_USB
@@ -21,6 +22,7 @@ FadeInEffect fadeInEffect;
 Arduboy2Ext arduboy;
 ArdBitmap<WIDTH, HEIGHT> ardBitmap;
 Font3x6 font3x6;
+BeepPin1 beep;
 
 #ifdef SPLASH_SCREEN
 GameStateType gameState = GameStateType::SplashScreen_Activate; 
@@ -36,9 +38,11 @@ GameOverStateVars gameOverVars;
 void setup() {
 
 	arduboy.boot();
+	arduboy.audio.begin();
 	arduboy.systemButtons();
 	arduboy.setFrameRate(40);
 //  arduboy.initRandomSeed();
+	beep.begin();
 
 }
 
@@ -46,6 +50,9 @@ void loop() {
 
 	if (!arduboy.nextFrame()) return;
 	arduboy.pollButtons();
+	beep.timer();
+
+	beep.tone(beep.freq(1000), 120);
 
 	switch (gameState) {
 
