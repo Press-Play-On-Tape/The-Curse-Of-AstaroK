@@ -1,6 +1,6 @@
 {
     "board": "arduino:avr:leonardo",
-    "sketch": "Curse/Curse.ino",
+    "sketch": "Curse\\Curse.ino",
     "output": "../build",
     "port": "/dev/cu.usbmodem14601",
     "programmer": "AVR ISP"
