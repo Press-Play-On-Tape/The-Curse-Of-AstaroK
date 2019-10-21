@@ -282,6 +282,7 @@ void playGame_Update() {
 								case 1:
 									playGameVars.showSaveDialogue = false;
 									playGameVars.counter = 0;
+									playGameVars.gameOver = false;
 									playGame_Activate();
 									break;
 							
