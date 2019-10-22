@@ -7,6 +7,7 @@
 void titleScreen_Activate() {
 
 	memset(&titleScreenVars, 0, 2);
+	sound.tones(testSound);
 
 }
 
@@ -18,6 +19,11 @@ void titleScreen_Update() {
 
   auto justPressed = arduboy.justPressedButtons();
   auto pressed = arduboy.pressedButtons();
+
+
+	// Handle sound counter ..
+	
+	if (titleScreenVars.soundCounter > 0) titleScreenVars.soundCounter--;
 
 
 	// Restart ?
@@ -63,6 +69,14 @@ void titleScreen_Update() {
 	}
 	#endif
 
+
+	// Toggle sound ..
+
+	if ((pressed & B_BUTTON) && (justPressed & UP_BUTTON || justPressed & DOWN_BUTTON)) {
+		titleScreenVars.soundIndex = titleScreen_ToggleSoundSettings();
+		titleScreenVars.soundCounter = 40;
+	}
+
 }
 
 
@@ -96,6 +110,34 @@ void titleScreen_Render() {
 		
 	#endif
 
+	if (titleScreenVars.soundCounter > 0) { SpritesB::drawOverwrite(120, 56, Images::Sounds, titleScreenVars.soundIndex); }
 	arduboy.display(true);
 	
 } 
+
+
+/* ----------------------------------------------------------------------------
+ *  Toggle the sound setting and commit to the EEPROM.
+ */
+uint8_t titleScreen_ToggleSoundSettings() {
+
+	uint8_t index = 0;
+
+  if (arduboy.audio.enabled()) {
+  
+    arduboy.audio.off(); 
+		index = 0;
+  
+  }
+  else {
+  
+    arduboy.audio.on(); 
+		index = 1;
+  
+  }
+
+  arduboy.audio.saveOnOff();
+
+	return index;
+    
+}
