@@ -1,9 +1,6 @@
 // 542 bytes
 #define SPLASH_SCREEN
 
-// 542 bytes
-#define SPLASH_SCREEN
-
 #define SOUNDS_ENABLED
 
 #include "src/utils/Arduboy2Ext.h"
