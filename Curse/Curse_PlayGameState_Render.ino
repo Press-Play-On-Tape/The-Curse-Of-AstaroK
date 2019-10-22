@@ -15,7 +15,8 @@ void playGame_Render() {
 
       timeOfDay = TimeOfDay::Day;
 
-      for (uint8_t x = 0; x < 128; x = x + 4) {
+      for (int16_t x = (playGameVars.world.cloudsXPos % 2 == 0 ? 0 : -1); x < 128; x = x + 4) {
+//      for (uint8_t x = 0; x < 128; x = x + 4) {
         SpritesB::drawOverwrite(x, 0, Images::Sky, 0);
       } 
 

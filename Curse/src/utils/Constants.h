@@ -115,7 +115,7 @@ namespace Constants {
   
   constexpr int16_t NPC_Location_01 = -80;
   constexpr int16_t NPC_Location_02 = -8;
-  constexpr int16_t NPC_Location_03 = 250;
+  constexpr int16_t NPC_Location_03 = 240;
 
   constexpr int16_t NPC_Locations[3] = { NPC_Location_01, NPC_Location_02, NPC_Location_03 };
 
