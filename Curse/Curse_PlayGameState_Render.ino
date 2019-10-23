@@ -85,7 +85,7 @@ void playGame_Render() {
       {
         uint8_t gp = pgm_read_byte(&Player_Items[(playGameVars.itemIdx * 4) + 3]);
 
-        playGame_CommonShopItems(Images::ShopKeeper_Item, Images::gpGauge);
+        playGame_CommonShopItems(Images::ShopKeeper_Item, true);
 
         switch (playGameVars.itemIdx) {
 
@@ -117,7 +117,7 @@ void playGame_Render() {
 
           case Constants::PlayerItems_Count:
             // arduboy.fillRect(83, 36, 32, 12, WHITE);
-            SpritesB::drawExternalMask(83, 36, Images::Bye, Images::Bye_Mask, 0, 0);
+            SpritesB::drawExternalMask(83, 35, Images::Bye, Images::Bye_Mask, 0, 0);
             ardBitmap.drawCompressed(15, 10, Images::LeaveShop_Image, WHITE, MIRROR_NONE);
             ardBitmap.drawCompressed(12, 34, Images::LeaveShop, WHITE, MIRROR_NONE);
             break;
@@ -133,7 +133,7 @@ void playGame_Render() {
     case ViewState::InShopRunes:
     case ViewState::InShopRunes_ConfirmPurchase:
       {
-        playGame_CommonShopItems(Images::ShopKeeper_Rune, Images::spGauge);
+        playGame_CommonShopItems(Images::ShopKeeper_Rune, false);
 
         switch (playGameVars.runeIdx) {
 
@@ -148,7 +148,7 @@ void playGame_Render() {
 
           default:
 //            arduboy.fillRect(83, 36, 32, 12, WHITE);
-            SpritesB::drawExternalMask(83, 36, Images::Bye, Images::Bye_Mask, 0, 0);
+            SpritesB::drawExternalMask(83, 35, Images::Bye, Images::Bye_Mask, 0, 0);
             ardBitmap.drawCompressed(15, 10, Images::LeaveShop_Image, WHITE, MIRROR_NONE);
             ardBitmap.drawCompressed(12, 34, Images::LeaveShop, WHITE, MIRROR_NONE);
             break;
@@ -593,11 +593,11 @@ void playGame_RenderCastleInterior() {
 
 }
 
-void playGame_CommonShopItems(const uint8_t * item, const uint8_t * gauge) {
+void playGame_CommonShopItems(const uint8_t * item, bool itemShop) {
 
-  ardBitmap.drawCompressed(77, 3, item, WHITE, MIRROR_NONE);
-  ardBitmap.drawCompressed(81, 34, Images::ShopKeeper_Panel, WHITE, MIRROR_NONE);
-	SpritesB::drawOverwrite(81, 52, gauge, 0);
+  ardBitmap.drawCompressed(77, 2, item, WHITE, MIRROR_NONE);
+  ardBitmap.drawCompressed(81, 33, Images::ShopKeeper_Panel, WHITE, MIRROR_NONE);
+	ardBitmap.drawCompressed(81, 51, Images::Gauge, WHITE, MIRROR_NONE);
   ardBitmap.drawCompressed(5, 30, Images::RuneShop_Frame, WHITE, MIRROR_NONE);
 
   if (!playGameVars.inventory.show) {
@@ -605,12 +605,20 @@ void playGame_CommonShopItems(const uint8_t * item, const uint8_t * gauge) {
     SpritesB::drawOverwrite(33, (playGameVars.highlight_DownArrow > 0 ? 60 : 59), Images::Arrow_Down, 0);
   }
 
+  font3x6.setCursor(84, 53);
+  if (itemShop) {
+    font3x6.print("GP");
+  }
+  else {
+    font3x6.print("SP");
+  }
+
 }
 
 void playGame_CommonPrice(const uint8_t * uom, uint8_t val) {
 
-  SpritesB::drawSelfMasked(89, 36, Images::Shop_Numbers, val);
-  SpritesB::drawSelfMasked(103, 36, uom, 0);
+  SpritesB::drawSelfMasked(89, 35, Images::Shop_Numbers, val);
+  SpritesB::drawSelfMasked(103, 35, uom, 0);
 
 }
 
@@ -639,15 +647,16 @@ void playGame_RenderTownItems(RenderPosition renderPosition) {
 }
 
 void playGame_RenderNumber(uint8_t val) {
+  
+  font3x6.setCursor(101, 53);
+  font3x6.setTextColor(BLACK);
 
-  uint8_t digits[4];
-  extractDigits(digits, val);
-
-  for (uint8_t j = 4; j > 0; --j) {
-
-    SpritesB::drawErase(118 - (j*5), 55, Images::Numbers_4x5, digits[j - 1]);
-
-  }
+  font3x6.print("0");
+  if (val < 100)  font3x6.print("0");
+  if (val < 10)   font3x6.print("0");
+  font3x6.print(val);
+  
+  font3x6.setTextColor(WHITE);
 
 }
 
