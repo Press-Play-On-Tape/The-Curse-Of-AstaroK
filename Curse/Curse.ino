@@ -1,3 +1,8 @@
+// 542 bytes
+#define SPLASH_SCREEN
+
+#define SOUNDS_ENABLED
+
 #include "src/utils/Arduboy2Ext.h"
 #include "src/entities/Entities.h"
 #include "src/fonts/Font3x6.h"
@@ -10,17 +15,22 @@
 #include "src/utils/FlashStringHelper.h"
 #include "src/ardBitmap/ArdBitmap.h"
 
+#ifdef SOUNDS_ENABLED
+#include <ArduboyTones.h>
+#endif
+
 #ifndef DEBUG
 ARDUBOY_NO_USB
 #endif
-
-// 542 bytes
-#define SPLASH_SCREEN
 
 FadeInEffect fadeInEffect;
 Arduboy2Ext arduboy;
 ArdBitmap<WIDTH, HEIGHT> ardBitmap;
 Font3x6 font3x6;
+
+#ifdef SOUNDS_ENABLED
+ArduboyTones sound(arduboy.audio.enabled);
+#endif
 
 #ifdef SPLASH_SCREEN
 GameStateType gameState = GameStateType::SplashScreen_Activate; 
@@ -33,12 +43,23 @@ TitleScreenStateVars titleScreenVars;
 PlayGameStateVars playGameVars;
 GameOverStateVars gameOverVars;
 
+#ifdef SOUNDS_ENABLED
+const uint16_t testSound[] PROGMEM = {
+  NOTE_C4,50, NOTE_D4,50, NOTE_E4,50, 
+  NOTE_C4,50, NOTE_D4,50, NOTE_E4,50, 
+  NOTE_C4,50, NOTE_D4,50, NOTE_E4,50, 
+  TONES_END
+};
+#endif
+
 void setup() {
 
 	arduboy.boot();
-	arduboy.systemButtons();
 	arduboy.setFrameRate(40);
-//  arduboy.initRandomSeed();
+
+	#ifdef SOUNDS_ENABLED
+	arduboy.audio.begin();
+	#endif
 
 }
 
