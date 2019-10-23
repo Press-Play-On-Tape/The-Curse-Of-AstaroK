@@ -593,9 +593,10 @@ void playGame_RenderCastleInterior() {
 
 }
 
-void playGame_CommonShopItems(const uint8_t * item, bool itemShop) {
+void playGame_CommonShopItems(const uint8_t * shopKeeper, bool itemShop) {
 
-  ardBitmap.drawCompressed(77, 2, item, WHITE, MIRROR_NONE);
+  ardBitmap.drawCompressed(77, 2, Images::ShopKeeper_Common, WHITE, MIRROR_NONE);
+  ardBitmap.drawCompressed(95, 8, shopKeeper, WHITE, MIRROR_NONE);
   ardBitmap.drawCompressed(81, 33, Images::ShopKeeper_Panel, WHITE, MIRROR_NONE);
 	ardBitmap.drawCompressed(81, 51, Images::Gauge, WHITE, MIRROR_NONE);
   ardBitmap.drawCompressed(5, 30, Images::RuneShop_Frame, WHITE, MIRROR_NONE);
