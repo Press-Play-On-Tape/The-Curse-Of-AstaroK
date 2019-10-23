@@ -22,9 +22,11 @@ void playGame_Render() {
 
       for (int16_t x = -128 + (playGameVars.world.cloudsXPos & 127); x < 256; x = x + 128) {
 //      for (int16_t x = -128 + (playGameVars.world.cloudsXPos % 128); x < 256; x = x + 128) {
-        ardBitmap.drawCompressed(x, 0, Images::Cloud_01, WHITE, MIRROR_NONE);
-        ardBitmap.drawCompressed(x + 55, -3, Images::Cloud_01, WHITE, MIRROR_NONE);
-        ardBitmap.drawCompressed(x + 90, 3, Images::Cloud_02, WHITE, MIRROR_NONE);
+        // ardBitmap.drawCompressed(x, 0, Images::Cloud_01, WHITE, MIRROR_NONE);
+        // ardBitmap.drawCompressed(x + 55, -3, Images::Cloud_01, WHITE, MIRROR_NONE);
+        // ardBitmap.drawCompressed(x + 90, 3, Images::Cloud_02, WHITE, MIRROR_NONE);
+        ardBitmap.drawCompressed(x, 0, Images::Clouds, WHITE, MIRROR_NONE);
+        //ardBitmap.drawCompressed(x + 128, 0, Images::Clouds, WHITE, MIRROR_NONE);
       }
 
       playGame_RenderTrees(playGameVars.world.buildingXPos);
