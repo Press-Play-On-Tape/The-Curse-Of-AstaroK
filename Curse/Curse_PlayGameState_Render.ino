@@ -15,12 +15,13 @@ void playGame_Render() {
 
       timeOfDay = TimeOfDay::Day;
 
-      for (int16_t x = (playGameVars.world.cloudsXPos % 2 == 0 ? 0 : -1); x < 128; x = x + 4) {
+      for (int16_t x = -4 + (playGameVars.world.cloudsXPos & 3); x < 128; x = x + 4) {
 //      for (uint8_t x = 0; x < 128; x = x + 4) {
         SpritesB::drawOverwrite(x, 0, Images::Sky, 0);
       } 
 
-      for (int16_t x = -128 + (playGameVars.world.cloudsXPos % 128); x < 256; x = x + 128) {
+      for (int16_t x = -128 + (playGameVars.world.cloudsXPos & 127); x < 256; x = x + 128) {
+//      for (int16_t x = -128 + (playGameVars.world.cloudsXPos % 128); x < 256; x = x + 128) {
         ardBitmap.drawCompressed(x, 0, Images::Cloud_01, WHITE, MIRROR_NONE);
         ardBitmap.drawCompressed(x + 55, -3, Images::Cloud_01, WHITE, MIRROR_NONE);
         ardBitmap.drawCompressed(x + 90, 3, Images::Cloud_02, WHITE, MIRROR_NONE);
@@ -41,7 +42,8 @@ void playGame_Render() {
         SpritesB::drawExternalMask(x + xPos + 10, 12, Images::Pumpkin, Images::Pumpkin_Mask, 0, 0);
 
         if (playGameVars.gameOver) {
-          SpritesB::drawExternalMask(x + xPos - 6, 36, Images::ClosedDoor, Images::ClosedDoor_Mask, 0, 0);
+//          SpritesB::drawExternalMask(x + xPos - 6, 36, Images::ClosedDoor, Images::ClosedDoor_Mask, 0, 0);
+          SpritesB::drawOverwrite(x + xPos - 6, 36, Images::ClosedDoor, 0);
         }
 
       }
@@ -56,7 +58,8 @@ void playGame_Render() {
         SpritesB::drawOverwrite(x + xPos - 26, 17, Images::RunesBuilding_Bottom, 0);
 
         if (playGameVars.gameOver) {
-          SpritesB::drawExternalMask(x + xPos - 6, 36, Images::ClosedDoor, Images::ClosedDoor_Mask, 0, 0);
+//          SpritesB::drawExternalMask(x + xPos - 6, 36, Images::ClosedDoor, Images::ClosedDoor_Mask, 0, 0);
+          SpritesB::drawOverwrite(x + xPos - 6, 36, Images::ClosedDoor, 0);
         }
 
       }
