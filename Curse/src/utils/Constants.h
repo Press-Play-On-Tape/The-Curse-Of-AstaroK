@@ -6,10 +6,10 @@
 #define _CHANGE_ENEMY
 
 // 68 Bytes
-#define _COMPRESSED_TREES
+#define COMPRESSED_TREES
 
 // 70 bytes
-#define TWO_TREE_TYPES
+#define _TWO_TREE_TYPES
 
 
 const uint8_t PROGMEM Levels[] = {

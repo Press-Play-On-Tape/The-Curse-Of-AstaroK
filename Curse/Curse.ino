@@ -1,5 +1,5 @@
 // 542 bytes
-#define SPLASH_SCREEN
+#define _SPLASH_SCREEN
 
 #define SOUNDS_ENABLED
 
