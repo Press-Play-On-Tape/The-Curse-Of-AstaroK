@@ -29,7 +29,7 @@ constexpr World world PROGMEM {
 
 constexpr uint8_t player[] PROGMEM {  
 	100, //HP
-	125, // gp
+	5, // gp
 	0, // sp
 	0, // def
 	Constants::Player_Ground_Level, // y	
