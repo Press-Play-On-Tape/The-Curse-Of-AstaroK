@@ -16,12 +16,10 @@ void playGame_Render() {
       timeOfDay = TimeOfDay::Day;
 
       for (int16_t x = -4 + (playGameVars.world.cloudsXPos & 3); x < 128; x = x + 4) {
-//      for (uint8_t x = 0; x < 128; x = x + 4) {
         SpritesB::drawOverwrite(x, 0, Images::Sky, 0);
       } 
 
       for (int16_t x = -128 + (playGameVars.world.cloudsXPos & 127); x < 256; x = x + 128) {
-//      for (int16_t x = -128 + (playGameVars.world.cloudsXPos % 128); x < 256; x = x + 128) {
         ardBitmap.drawCompressed(x, 0, Images::Cloud_01, WHITE, MIRROR_NONE);
         ardBitmap.drawCompressed(x + 55, -3, Images::Cloud_01, WHITE, MIRROR_NONE);
         ardBitmap.drawCompressed(x + 90, 3, Images::Cloud_02, WHITE, MIRROR_NONE);
@@ -147,7 +145,6 @@ void playGame_Render() {
             break;
 
           default:
-//            arduboy.fillRect(83, 36, 32, 12, WHITE);
             SpritesB::drawExternalMask(83, 35, Images::Bye, Images::Bye_Mask, 0, 0);
             ardBitmap.drawCompressed(15, 10, Images::LeaveShop_Image, WHITE, MIRROR_NONE);
             ardBitmap.drawCompressed(12, 34, Images::LeaveShop, WHITE, MIRROR_NONE);
@@ -626,8 +623,8 @@ void playGame_CommonPrice(const uint8_t * uom, uint8_t val) {
 void playGame_YouRolledMessage(uint8_t width) {
 
   drawMessageBox(1, width);
-  font3x6.setCursor(64 - (width / 2) + 10, 5);
-  font3x6.print(F("You rolled "));
+  font3x6.setCursor(64 - (width / 2) + 12, 5);
+  font3x6.print(F("You cast "));
 
 }
 

@@ -119,7 +119,7 @@ The item details are listed below:
 | High&nbsp;Helmet | 40&nbsp;GP | <ul><li>5 additional DEF points </li><li>5 additional attack points</li></ul> |
 | Round&nbsp;Helmet | 40&nbsp;GP | <ul><li>5 additional DEF points</li></ul> |
 | | | |
-| Fire&nbsp;Potion | 20&nbsp;GP | When used, the Fire Potion inflicts an additional 10 points of damage on top of your next roll.  If attacking a Gelatinous Cube, the Fire Potion has double the effect (ie 20 points of damage) |
+| Fire&nbsp;Potion | 20&nbsp;GP | When used, the Fire Potion inflicts an additional 10 points of damage on top of your next cast.  If attacking a Gelatinous Cube, the Fire Potion has double the effect (ie 20 points of damage) |
 | Health&nbsp;Potion | 15&nbsp;GP | <ul><li>20 HP points added immediately</li></ul> |
 | Speed&nbsp;Potion | 20&nbsp;GP | When used, the Speed Potion will allow you to cast the runes an additional time.  Multiple speed potions can be consumed to increase the number of recasts from 3 to 4 or more! |
 
@@ -200,7 +200,7 @@ You may enter the dungeon at any time, with or without supplies you may have bou
 
 An enemy may attack you as you enter a dungeon before you have a chance to attack first (**Fig 4**).  When it is your turn to attack you cast the runes by pressing the 'A' button.  Once they have rolled to a stop you can choose to keep some and recast the remainder by jumping and touching those you wish to recast.  Once all of the runes to recast have been selected, press the 'A' button to recast the selected rune.  You can typically recast up to 3 times however if you have consumed a 'Speed Potion' you can increase this for the current attack.  
 
-If you roll a rune combination that matches one of the runes sets purchased from the town or you roll a combination from the 'standard' set below, you may skip a recast by not selecting any runes to recast and simply pressing the 'A' button.
+If you cast a rune combination that matches one of the runes sets purchased from the town or you cast a combination from the 'standard' set below, you may skip a recast by not selecting any runes to recast and simply pressing the 'A' button.
 
 If a scoring rune combination is cast, the damage is inflicted on the enemy immediately (**Fig 1 and 2**).  This may be followed by a secondary damage caused by a Fire Blaze or Venom Mist rune as these have a residual effect that lasts over two subsequent attacks (**Fig 3**).
 
