@@ -16,12 +16,10 @@ void playGame_Render() {
       timeOfDay = TimeOfDay::Day;
 
       for (int16_t x = -4 + (playGameVars.world.cloudsXPos & 3); x < 128; x = x + 4) {
-//      for (uint8_t x = 0; x < 128; x = x + 4) {
         SpritesB::drawOverwrite(x, 0, Images::Sky, 0);
       } 
 
       for (int16_t x = -128 + (playGameVars.world.cloudsXPos & 127); x < 256; x = x + 128) {
-//      for (int16_t x = -128 + (playGameVars.world.cloudsXPos % 128); x < 256; x = x + 128) {
         ardBitmap.drawCompressed(x, 0, Images::Cloud_01, WHITE, MIRROR_NONE);
         ardBitmap.drawCompressed(x + 55, -3, Images::Cloud_01, WHITE, MIRROR_NONE);
         ardBitmap.drawCompressed(x + 90, 3, Images::Cloud_02, WHITE, MIRROR_NONE);
@@ -37,7 +35,8 @@ void playGame_Render() {
         int16_t xPos = playGameVars.world.buildingXPos;
         int16_t x = playGameVars.world.buildings[0];
         
-        SpritesB::drawExternalMask(x + xPos - 33, 4, Images::ItemsBuilding_Top, Images::ItemsBuilding_Top_Mask, 0, 0);
+//        SpritesB::drawExternalMask(x + xPos - 33, 4, Images::ItemsBuilding_Top, Images::ItemsBuilding_Top_Mask, 0, 0);
+        SpritesB::drawPlusMask(x + xPos - 33, 4, Images::ItemsBuilding_Top, 0);
         SpritesB::drawOverwrite(x + xPos - 38, 22, Images::ItemsBuilding_Bottom, 0);
         SpritesB::drawExternalMask(x + xPos + 10, 12, Images::Pumpkin, Images::Pumpkin_Mask, 0, 0);
 
@@ -52,7 +51,8 @@ void playGame_Render() {
         int16_t xPos = playGameVars.world.buildingXPos;
         int16_t x = playGameVars.world.buildings[1];
 
-        SpritesB::drawExternalMask(x + xPos - 26, 1, Images::RunesBuilding_Top, Images::RunesBuilding_Top_Mask, 0, 0);
+//        SpritesB::drawExternalMask(x + xPos - 26, 1, Images::RunesBuilding_Top, Images::RunesBuilding_Top_Mask, 0, 0);
+        SpritesB::drawPlusMask(x + xPos - 26, 1, Images::RunesBuilding_Top, 0);
         SpritesB::drawOverwrite(x + xPos + 22, 32, Images::RunesBuilding_Side, 0);
         SpritesB::drawOverwrite(x + xPos - 45, 32, Images::RunesBuilding_Side, 0);
         SpritesB::drawOverwrite(x + xPos - 26, 17, Images::RunesBuilding_Bottom, 0);
@@ -119,7 +119,8 @@ void playGame_Render() {
 
           case Constants::PlayerItems_Count:
             // arduboy.fillRect(83, 36, 32, 12, WHITE);
-            SpritesB::drawExternalMask(83, 36, Images::Bye, Images::Bye_Mask, 0, 0);
+//            SpritesB::drawExternalMask(83, 36, Images::Bye, Images::Bye_Mask, 0, 0);
+            SpritesB::drawPlusMask(83, 36, Images::Bye, 0);
             ardBitmap.drawCompressed(15, 10, Images::LeaveShop_Image, WHITE, MIRROR_NONE);
             ardBitmap.drawCompressed(12, 34, Images::LeaveShop, WHITE, MIRROR_NONE);
             break;
@@ -150,7 +151,8 @@ void playGame_Render() {
 
           default:
 //            arduboy.fillRect(83, 36, 32, 12, WHITE);
-            SpritesB::drawExternalMask(83, 36, Images::Bye, Images::Bye_Mask, 0, 0);
+//            SpritesB::drawExternalMask(83, 36, Images::Bye, Images::Bye_Mask, 0, 0);
+            SpritesB::drawPlusMask(83, 36, Images::Bye, 0);
             ardBitmap.drawCompressed(15, 10, Images::LeaveShop_Image, WHITE, MIRROR_NONE);
             ardBitmap.drawCompressed(12, 34, Images::LeaveShop, WHITE, MIRROR_NONE);
             break;
