@@ -42,7 +42,6 @@ void playGame_Render() {
         SpritesB::drawExternalMask(x + xPos + 10, 12, Images::Pumpkin, Images::Pumpkin_Mask, 0, 0);
 
         if (playGameVars.gameOver) {
-//          SpritesB::drawExternalMask(x + xPos - 6, 36, Images::ClosedDoor, Images::ClosedDoor_Mask, 0, 0);
           SpritesB::drawOverwrite(x + xPos - 6, 36, Images::ClosedDoor, 0);
         }
 
@@ -58,7 +57,6 @@ void playGame_Render() {
         SpritesB::drawOverwrite(x + xPos - 26, 17, Images::RunesBuilding_Bottom, 0);
 
         if (playGameVars.gameOver) {
-//          SpritesB::drawExternalMask(x + xPos - 6, 36, Images::ClosedDoor, Images::ClosedDoor_Mask, 0, 0);
           SpritesB::drawOverwrite(x + xPos - 6, 36, Images::ClosedDoor, 0);
         }
 
