@@ -9,7 +9,7 @@ void titleScreen_Activate() {
 	memset(&titleScreenVars, 0, 2);
 
 	#ifdef SOUNDS_ENABLED
-	sound.tones(testSound);
+	sound.tones(Sounds::testSound);
 	#endif
 
 }
