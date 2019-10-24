@@ -329,7 +329,7 @@ uint8_t stealRandomItem() {
 	uint8_t randomItem = arduboy.randomLFSR(0, Constants::PlayerItems_Count);
 	uint8_t itemIndex = 0;
 
-	for (uint8_t x = randomItem; x < randomItem + Constants::PlayerItems_Count; x++) {
+	for (uint8_t x = randomItem; x < static_cast<uint8_t>(randomItem + Constants::PlayerItems_Count); x++) {
 
 		uint8_t y = x % Constants::PlayerItems_Count;
 
@@ -351,6 +351,7 @@ uint8_t stealRandomRune() {
 	uint8_t itemIndex = 0;
 
 	for (uint8_t x = randomItem; x < randomItem + Constants::RuneCombinations_Count; x++) {
+//	for (uint8_t x = randomItem; x < static_cast<uint8_t>(randomItem + Constants::RuneCombinations_Count); x++) {
 
 		uint8_t y = x % Constants::RuneCombinations_Count;
 
