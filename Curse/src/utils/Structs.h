@@ -70,6 +70,8 @@ struct SplashScreenStateVars {
 struct TitleScreenStateVars {
   uint8_t restart;
   uint8_t counter;
+  uint8_t soundCounter;
+  uint8_t soundIndex;
 };
 
 struct PlayGameStateVars {

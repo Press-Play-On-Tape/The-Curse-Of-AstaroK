@@ -86,14 +86,15 @@ void TownItem::render(Arduboy2Ext &arduboy, ArdBitmap<128, 64> &ardBitmap, const
         SpritesB::drawOverwrite(this->x + xPos - 13, 2, Images::Castle_RH_Top, 0);
         SpritesB::drawOverwrite(this->x + xPos - 21, 18, Images::Castle_LH_Mid, 0);
         SpritesB::drawOverwrite(this->x + xPos - 28, 34, Images::Castle_LH_Bottom, 0);
+
+        if (gameOver) {
+          SpritesB::drawOverwrite(this->x + xPos - 9, 36, Images::ClosedDoor, 0);
+        }        
+
         break;
 
       case ItemType::Castle_02:
         SpritesB::drawExternalMask(this->x + xPos, 34, Images::Castle_RH_Bottom, Images::Castle_RH_Bottom_Mask, 0, 0);
-
-        if (gameOver) {
-          SpritesB::drawExternalMask(this->x + xPos - 9, 36, Images::ClosedDoor, Images::ClosedDoor_Mask, 0, 0);
-        }        
         
         break;
 

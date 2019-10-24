@@ -16,12 +16,10 @@ void playGame_Render() {
       timeOfDay = TimeOfDay::Day;
 
       for (int16_t x = -4 + (playGameVars.world.cloudsXPos & 3); x < 128; x = x + 4) {
-//      for (uint8_t x = 0; x < 128; x = x + 4) {
         SpritesB::drawOverwrite(x, 0, Images::Sky, 0);
       } 
 
       for (int16_t x = -128 + (playGameVars.world.cloudsXPos & 127); x < 256; x = x + 128) {
-//      for (int16_t x = -128 + (playGameVars.world.cloudsXPos % 128); x < 256; x = x + 128) {
         ardBitmap.drawCompressed(x, 0, Images::Cloud_01, WHITE, MIRROR_NONE);
         ardBitmap.drawCompressed(x + 55, -3, Images::Cloud_01, WHITE, MIRROR_NONE);
         ardBitmap.drawCompressed(x + 90, 3, Images::Cloud_02, WHITE, MIRROR_NONE);
@@ -42,7 +40,6 @@ void playGame_Render() {
         SpritesB::drawExternalMask(x + xPos + 10, 12, Images::Pumpkin, Images::Pumpkin_Mask, 0, 0);
 
         if (playGameVars.gameOver) {
-//          SpritesB::drawExternalMask(x + xPos - 6, 36, Images::ClosedDoor, Images::ClosedDoor_Mask, 0, 0);
           SpritesB::drawOverwrite(x + xPos - 6, 36, Images::ClosedDoor, 0);
         }
 
@@ -58,7 +55,6 @@ void playGame_Render() {
         SpritesB::drawOverwrite(x + xPos - 26, 17, Images::RunesBuilding_Bottom, 0);
 
         if (playGameVars.gameOver) {
-//          SpritesB::drawExternalMask(x + xPos - 6, 36, Images::ClosedDoor, Images::ClosedDoor_Mask, 0, 0);
           SpritesB::drawOverwrite(x + xPos - 6, 36, Images::ClosedDoor, 0);
         }
 
@@ -87,7 +83,7 @@ void playGame_Render() {
       {
         uint8_t gp = pgm_read_byte(&Player_Items[(playGameVars.itemIdx * 4) + 3]);
 
-        playGame_CommonShopItems(Images::ShopKeeper_Item, Images::gpGauge);
+        playGame_CommonShopItems(Images::ShopKeeper_Item, true);
 
         switch (playGameVars.itemIdx) {
 
@@ -119,7 +115,7 @@ void playGame_Render() {
 
           case Constants::PlayerItems_Count:
             // arduboy.fillRect(83, 36, 32, 12, WHITE);
-            SpritesB::drawExternalMask(83, 36, Images::Bye, Images::Bye_Mask, 0, 0);
+            SpritesB::drawExternalMask(83, 35, Images::Bye, Images::Bye_Mask, 0, 0);
             ardBitmap.drawCompressed(15, 10, Images::LeaveShop_Image, WHITE, MIRROR_NONE);
             ardBitmap.drawCompressed(12, 34, Images::LeaveShop, WHITE, MIRROR_NONE);
             break;
@@ -135,7 +131,7 @@ void playGame_Render() {
     case ViewState::InShopRunes:
     case ViewState::InShopRunes_ConfirmPurchase:
       {
-        playGame_CommonShopItems(Images::ShopKeeper_Rune, Images::spGauge);
+        playGame_CommonShopItems(Images::ShopKeeper_Rune, false);
 
         switch (playGameVars.runeIdx) {
 
@@ -149,8 +145,7 @@ void playGame_Render() {
             break;
 
           default:
-//            arduboy.fillRect(83, 36, 32, 12, WHITE);
-            SpritesB::drawExternalMask(83, 36, Images::Bye, Images::Bye_Mask, 0, 0);
+            SpritesB::drawExternalMask(83, 35, Images::Bye, Images::Bye_Mask, 0, 0);
             ardBitmap.drawCompressed(15, 10, Images::LeaveShop_Image, WHITE, MIRROR_NONE);
             ardBitmap.drawCompressed(12, 34, Images::LeaveShop, WHITE, MIRROR_NONE);
             break;
@@ -595,11 +590,12 @@ void playGame_RenderCastleInterior() {
 
 }
 
-void playGame_CommonShopItems(const uint8_t * item, const uint8_t * gauge) {
+void playGame_CommonShopItems(const uint8_t * shopKeeper, bool itemShop) {
 
-  ardBitmap.drawCompressed(77, 3, item, WHITE, MIRROR_NONE);
-  ardBitmap.drawCompressed(81, 34, Images::ShopKeeper_Panel, WHITE, MIRROR_NONE);
-	SpritesB::drawOverwrite(81, 52, gauge, 0);
+  ardBitmap.drawCompressed(77, 2, Images::ShopKeeper_Common, WHITE, MIRROR_NONE);
+  ardBitmap.drawCompressed(95, 8, shopKeeper, WHITE, MIRROR_NONE);
+  ardBitmap.drawCompressed(81, 33, Images::ShopKeeper_Panel, WHITE, MIRROR_NONE);
+	ardBitmap.drawCompressed(81, 51, Images::Gauge, WHITE, MIRROR_NONE);
   ardBitmap.drawCompressed(5, 30, Images::RuneShop_Frame, WHITE, MIRROR_NONE);
 
   if (!playGameVars.inventory.show) {
@@ -607,20 +603,28 @@ void playGame_CommonShopItems(const uint8_t * item, const uint8_t * gauge) {
     SpritesB::drawOverwrite(33, (playGameVars.highlight_DownArrow > 0 ? 60 : 59), Images::Arrow_Down, 0);
   }
 
+  font3x6.setCursor(84, 53);
+  if (itemShop) {
+    font3x6.print("GP");
+  }
+  else {
+    font3x6.print("SP");
+  }
+
 }
 
 void playGame_CommonPrice(const uint8_t * uom, uint8_t val) {
 
-  SpritesB::drawSelfMasked(89, 36, Images::Shop_Numbers, val);
-  SpritesB::drawSelfMasked(103, 36, uom, 0);
+  SpritesB::drawSelfMasked(89, 35, Images::Shop_Numbers, val);
+  SpritesB::drawSelfMasked(103, 35, uom, 0);
 
 }
 
 void playGame_YouRolledMessage(uint8_t width) {
 
   drawMessageBox(1, width);
-  font3x6.setCursor(64 - (width / 2) + 10, 5);
-  font3x6.print(F("You rolled "));
+  font3x6.setCursor(64 - (width / 2) + 12, 5);
+  font3x6.print(F("You cast "));
 
 }
 
@@ -641,15 +645,16 @@ void playGame_RenderTownItems(RenderPosition renderPosition) {
 }
 
 void playGame_RenderNumber(uint8_t val) {
+  
+  font3x6.setCursor(101, 53);
+  font3x6.setTextColor(BLACK);
 
-  uint8_t digits[4];
-  extractDigits(digits, val);
-
-  for (uint8_t j = 4; j > 0; --j) {
-
-    SpritesB::drawErase(118 - (j*5), 55, Images::Numbers_4x5, digits[j - 1]);
-
-  }
+  font3x6.print("0");
+  if (val < 100)  font3x6.print("0");
+  if (val < 10)   font3x6.print("0");
+  font3x6.print(val);
+  
+  font3x6.setTextColor(WHITE);
 
 }
 

@@ -429,6 +429,7 @@ void Player::decHP(const uint8_t hp) {
   }
 }
 
+
 void Player::update() {
 
   if (this->jumping) {
