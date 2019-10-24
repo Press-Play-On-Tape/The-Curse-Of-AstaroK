@@ -42,3 +42,5 @@ template<typename T> T absT(const T & v) {
 template< typename T, size_t N > constexpr size_t ArrayLength(T (&)[N]) {
 	return N;
 }
+
+

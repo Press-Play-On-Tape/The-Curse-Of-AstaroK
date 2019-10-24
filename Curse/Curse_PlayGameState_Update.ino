@@ -124,13 +124,13 @@ void playGame_Update() {
 
 						if (!playGameVars.gameOver) {
 							
-							if (absT(playGameVars.world.buildings[0] + x) < 10) {
+							if (playGame_CloseTo(playGameVars.world.buildings[0] + x)) {
 
 								playGame_ChangeViewState(ViewState::InShopItems);
 
 							}
 
-							if (absT(playGameVars.world.buildings[1] + x) < 10) {
+							if (playGame_CloseTo(playGameVars.world.buildings[1] + x)) {
 
 								playGame_ChangeViewState(ViewState::InShopRunes);
 
@@ -161,7 +161,7 @@ void playGame_Update() {
 
 					for (uint8_t y = 0; y < 3; y++) {
 
-						if (playGameVars.world.townItems[Constants::HP_Index].getEnabled() && absT(playGameVars.world.townItems[Constants::HP_Index].getX() + x - 6) < 10) {
+						if (playGameVars.world.townItems[Constants::HP_Index].getEnabled() && playGame_CloseTo(playGameVars.world.townItems[Constants::HP_Index].getX() + x - 6)) {
 
 							playGame_SaveMessage(F("You picked up some HP!"), 1, 94, Constants::DialogueDelay);
 							playGameVars.world.townItems[Constants::HP_Index].setEnabled(false);
@@ -169,13 +169,13 @@ void playGame_Update() {
 
 						}
 
-						if (absT(Constants::Tombstone_Locations[y] + x - 6) < 10) {
+						if (playGame_CloseTo(Constants::Tombstone_Locations[y] + x - 6)) {
 
 							playGame_SaveMessage(readFlashStringPointer(&Tombstone_Inscriptions[y]), 2, 94, Constants::DialogueDelay);
 
 						}
 
-						if (absT(Constants::NPC_Locations[y] + x) < 15) {
+						if (playGame_CloseTo(Constants::NPC_Locations[y] + x)) {
 
 							if (playGameVars.gameOver) {
 								playGame_SaveMessage(F("    Thank you for saving\n      us from the Curse!"), 2, 104, Constants::DialogueDelay);
@@ -186,7 +186,7 @@ void playGame_Update() {
 
 						}
 
-						if (absT(Constants::SavingPost_Location + x) < 10) {
+						if (playGame_CloseTo(Constants::SavingPost_Location + x)) {
 							
 							playGameVars.showSaveDialogue = true;
 							playGameVars.counter = 0;
@@ -1100,3 +1100,9 @@ void playGame_SaveGame() {
 	playGame_SaveMessage(F("  Game state saved!"), 1, 88, Constants::DialogueDelay);
 
 };
+
+bool playGame_CloseTo(int16_t v) {
+  
+  return ((v < 0) ? -v : v) < 10;
+
+}
