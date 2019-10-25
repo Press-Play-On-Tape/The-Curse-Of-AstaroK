@@ -240,7 +240,7 @@ void playGame_Update() {
 
 										if (c == 'c') {
 
-											playGame_SaveMessage(F(" Overwrite existing game?\n          #   Yes    $   No"), 2, 104, 255);
+											playGame_SaveMessage(F(" Overwrite existing game?\n          \"#% Yes    \"$% No"), 2, 104, 255);
 
 										}
 										else {
@@ -250,7 +250,7 @@ void playGame_Update() {
 									break;
 
 								case 1:
-									playGame_SaveMessage(F("  Start a new game?\n     #   Yes    $   No"), 2, 84, 254);
+									playGame_SaveMessage(F("  Start a new game?\n     \"#% Yes    \"$% No"), 2, 84, 254);
 									break;
 
 								case 2:
@@ -352,7 +352,7 @@ void playGame_Update() {
 					if (!purchaseCancelled) {
 
 						if (playerItem.gold <= playGameVars.player.getGP()) {
-							playGame_SaveMessage(F("   Buy this item?\n   #   Yes    $   No"), 2, 76);
+							playGame_SaveMessage(F("   Buy this item?\n   \"#% Yes    \"$% No"), 2, 76);
 							playGameVars.viewState = ViewState::InShopItems_ConfirmPurchase;
 						}
 						else {
@@ -456,7 +456,7 @@ void playGame_Update() {
 					if (!purchaseCancelled) {
 
 						if (sp <= playGameVars.player.getSP()) {
-							playGame_SaveMessage(F("  Buy this rune?\n  #   Yes    $   No"), 2, 74);
+							playGame_SaveMessage(F("  Buy this rune?\n  \"#% Yes    \"$% No"), 2, 74);
 							playGameVars.viewState = ViewState::InShopRunes_ConfirmPurchase;
 						}
 						else {

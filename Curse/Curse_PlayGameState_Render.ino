@@ -254,7 +254,7 @@ void playGame_Render() {
                   font3x6.print(F(" x "));
                   font3x6.print(qty);
                 }
-                font3x6.print(F("\n"));
+                font3x6.print(static_cast<uint8_t>('\n'));
               }
               renderedItems++;
             }
@@ -324,7 +324,7 @@ void playGame_Render() {
             font3x6.setCursor(xPos + 43, yPos + 15);
             playGameVars.enemy.renderName(font3x6);
 
-            font3x6.print(F("\n"));
+            font3x6.print(static_cast<uint8_t>('\n'));
             font3x6.println(playGameVars.enemy.getHP());
             font3x6.println(playGameVars.enemy.getDEF());
             break;
@@ -369,7 +369,7 @@ void playGame_Render() {
         drawMessageBox(2, 130);
         font3x6.setCursor(8, 5);
         font3x6.print(readFlashStringPointer(&Dialogue[playGameVars.message.arrayIndex + playGameVars.message.topLine]));
-        font3x6.print(F("\n"));
+        font3x6.print(static_cast<uint8_t>('\n'));
         font3x6.print(readFlashStringPointer(&Dialogue[playGameVars.message.arrayIndex + playGameVars.message.topLine + 1]));
 
         if (playGameVars.message.topLine > 0) SpritesB::drawSelfMasked(116, 5, Images::Arrow_Up_Dialogue, 0);

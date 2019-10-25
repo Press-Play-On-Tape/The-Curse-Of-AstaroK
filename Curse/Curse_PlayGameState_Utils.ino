@@ -285,7 +285,7 @@ void drawMessageBox(const __FlashStringHelper *message1, const __FlashStringHelp
 
   font3x6.setCursor(left + 8, 5);
  	font3x6.print(message1);
- 	font3x6.print(F("\n"));
+ 	font3x6.print(static_cast<uint8_t>('\n'));
  	font3x6.print(message2);
 
 }

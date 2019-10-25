@@ -6,6 +6,7 @@
 #define FONT3X6_WIDTH 3
 #define FONT3X6_HEIGHT 6
 
+#define CHAR_SPACE 32
 #define CHAR_EXCLAMATION 33
 #define CHAR_QUOTE 39
 #define CHAR_PERIOD 46
@@ -22,11 +23,6 @@
 #define CHAR_NUMBER_0 48
 #define CHAR_NUMBER_9 57
 
-// #
-#define CHAR_PRESS_A 35  
-// $
-#define CHAR_PRESS_B 36
-
 #define FONT_EXCLAMATION_INDEX 62
 #define FONT_PERIOD_INDEX 63
 #define FONT_DASH_INDEX 64
@@ -40,17 +36,22 @@
 
 const uint8_t PROGMEM font_images[] = {
   3, 8,
-
+  0x00, 0x00, 0x00,  // SPACE
   0x00, 0x2F, 0x00,  // !
-  0x00, 0x00, 0x00,  // "
-  0x00, 0x00, 0x00,  // #
-  0x00, 0x00, 0x00,  // $
-  0x00, 0x00, 0x00,  // %
+  
+  0x00, 0x3c, 0x7e,  // " button (
+  0xc3, 0xf5, 0xc3,  // # button A
+  0x81, 0xb5, 0xcb,  // $ button B
+  0x7e, 0x3c, 0x00,  // % button )
+  
   0x00, 0x00, 0x00,  // &
+  
   0x03, 0x00, 0x00,  // '
+  
   0x00, 0x00, 0x00,  // (
   0x00, 0x00, 0x00,  // )
   0x00, 0x00, 0x00,  // *
+  
   0x08, 0x1C, 0x08,  // +
   0x40, 0x20, 0x00,  // ,
   0x08, 0x08, 0x08,  // -
@@ -69,10 +70,12 @@ const uint8_t PROGMEM font_images[] = {
   0x07, 0x05, 0x3f,  // 9
 
   0x14, 0x00, 0x00,  // :
+  
   0x00, 0x00, 0x00,  // ;
   0x00, 0x00, 0x00,  // <
   0x00, 0x00, 0x00,  // =
   0x00, 0x00, 0x00,  // >
+  
   0x02, 0x29, 0x06,  // ?
   0x20, 0x00, 0x20,  // @
   0x3c, 0x0b, 0x3c,  // A
@@ -106,6 +109,7 @@ const uint8_t PROGMEM font_images[] = {
   0x00, 0x00, 0x00,  // 
   0x00, 0x00, 0x00,  // ]
   0x00, 0x00, 0x00,  // ^
+  
   0x00, 0x00, 0x00,  // _
   0x00, 0x00, 0x00,  // `
 
@@ -138,12 +142,6 @@ const uint8_t PROGMEM font_images[] = {
 
 };
 
-const uint8_t PROGMEM PressAB[] = {
-7, 8,
-0x3c, 0x7e, 0xc3, 0xf5, 0xc3, 0x7e, 0x3c, 
-0x3c, 0x7e, 0x81, 0xb5, 0xcb, 0x7e, 0x3c, 
-};
-
 Font3x6::Font3x6(uint8_t lineHeight) {
 
   _lineHeight = lineHeight;
@@ -155,21 +153,16 @@ Font3x6::Font3x6(uint8_t lineHeight) {
 }
 
 size_t Font3x6::write(uint8_t c) {
-
   if (c == '\n')     {
     _cursorX = _baseX;
     _cursorY += _lineHeight;
   }
-  else if (c == ' ')      {
-    _cursorX += 2;
-  }
-  else {
-
+  else if (c >= ' ') { //filters out '\r' from println or other non control chars
     printChar(c, _cursorX, _cursorY);
-    if (c == 'i' || c == 'I' || c == '\'') {
+    if (c == ' ' || c == 'i' || c == 'I' || c == '\'') {
       _cursorX += 2;
     }
-    else if (c == 'l' || c == 'L') {
+    else if ((c >= '"' && c <='%') || c == 'l' || c == 'L') {
       _cursorX += 3;
     }
     else {
@@ -184,42 +177,14 @@ size_t Font3x6::write(uint8_t c) {
 
 void Font3x6::printChar(const char c, const int8_t x, int8_t y) {
 
-  int8_t idx = -1;
-
+  int8_t idx = c - CHAR_SPACE;
   ++y;
-
-  if (c == CHAR_PRESS_A) {
-    idx = -3;
+  if (_textColor == WHITE) {
+    SpritesB::drawSelfMasked(x, y, font_images, idx);
   }
-  else if (c == CHAR_PRESS_B) {
-    idx = -2;
-  } 
   else {
-    idx = c - CHAR_EXCLAMATION;
+    SpritesB::drawErase(x, y, font_images, idx);
   }
-
-  switch (idx) {
-
-    case 0 ... 127:
-      if (_textColor == WHITE) {
-        SpritesB::drawSelfMasked(x, y, font_images, idx);
-      }
-      else {
-        SpritesB::drawErase(x, y, font_images, idx);
-      }
-      break;
-
-    case -3 ... -2:
-      if (_textColor == WHITE) {
-        SpritesB::drawSelfMasked(x, y - 1, PressAB, idx + 3);
-      }
-      else {
-        SpritesB::drawErase(x, y - 1, PressAB, idx + 3);
-      }
-      break;
-
-  }
-
 }
 
 void Font3x6::setCursor(const int8_t x, const int8_t y) {
@@ -235,4 +200,3 @@ void Font3x6::setTextColor(const uint8_t color) {
 void Font3x6::setHeight(const uint8_t lineHeight) {
   _lineHeight = lineHeight;
 }
-
