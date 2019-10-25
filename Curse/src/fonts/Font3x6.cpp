@@ -196,7 +196,7 @@ void Font3x6::write(uint8_t c) {
     _cursorX = _baseX;
     _cursorY += _lineHeight;
   }
-  else if (c >= ' ') { //filters out '\r' from println or other non control chars
+  else {
     printChar(c, _cursorX, _cursorY);
     if (c == ' ' || c == 'i' || c == 'I' || c == '\'') {
       _cursorX += 2;
