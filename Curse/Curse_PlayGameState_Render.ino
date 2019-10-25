@@ -252,7 +252,7 @@ void playGame_Render() {
                 }
                 else {
                   font3x6.print(F(" x "));
-                  font3x6.print(qty);
+                  font3x6.printNumber(qty);
                 }
                 font3x6.print(static_cast<uint8_t>('\n'));
               }
@@ -400,7 +400,7 @@ void playGame_Render() {
                   playGame_YouRolledMessage(RuneCombination_Purchased_Captions_Length[playGameVars.matchedRuneCombination.id]);
                   font3x6.print(F("a "));
                   font3x6.print(readFlashStringPointer(&RuneCombination_Purchased_Captions[playGameVars.matchedRuneCombination.id]));
-                  font3x6.print(F("!"));
+                  font3x6.print('!');
                   break;
 
                 case RuneCombinationType_Standard::Start ... RuneCombinationType_Standard::End:
