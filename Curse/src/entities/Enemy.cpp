@@ -142,8 +142,8 @@ void Enemy::renderName(Font3x6 &font3x6) {
 
   if (this->enemyType != EnemyType::Astarok) {
 
-    char name[7] = { 0, 0, 0, 0, 0, 0, 0 };
-
+    char name[7];
+    name[6]=0;
     for (uint8_t x = 0; x < 3; x++) {
       memcpy_P(&name[x * 2], &RandomNames[this->names[x] * 2], 2);
     }
@@ -152,7 +152,7 @@ void Enemy::renderName(Font3x6 &font3x6) {
 
   }
   else {
-    font3x6.print("ASTAROK");
+    font3x6.print(F("ASTAROK"));
   }
   
 }

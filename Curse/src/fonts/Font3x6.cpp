@@ -152,12 +152,51 @@ Font3x6::Font3x6(uint8_t lineHeight) {
 
 }
 
-size_t Font3x6::write(uint8_t c) {
+void Font3x6::print(char c)
+{
+  write(c);
+}
+
+void Font3x6::print(char *str)
+{
+  while (*str) write(*str++);
+}
+
+void Font3x6::print(const __FlashStringHelper *ifsh)
+{
+  PGM_P p = reinterpret_cast<PGM_P>(ifsh);
+  while (1) {
+    unsigned char c = pgm_read_byte(p++);
+    if (c == 0) break;
+    write(c);
+  }
+}
+
+void Font3x6::printNumber(uint8_t n)
+{
+  char buf[4];
+  char *str = &buf[sizeof(buf) - 1];
+  *str = '\0';
+  do {
+    char c = n % 10;
+    n /= 10;
+    *--str = c + '0';
+  } while(n);
+   print(str);
+}
+
+void Font3x6::printNumberln(uint8_t n)
+{
+  printNumber(n);
+  print(static_cast<uint8_t>('\n'));
+}
+
+void Font3x6::write(uint8_t c) {
   if (c == '\n')     {
     _cursorX = _baseX;
     _cursorY += _lineHeight;
   }
-  else if (c >= ' ') { //filters out '\r' from println or other non control chars
+  else {
     printChar(c, _cursorX, _cursorY);
     if (c == ' ' || c == 'i' || c == 'I' || c == '\'') {
       _cursorX += 2;
@@ -168,11 +207,7 @@ size_t Font3x6::write(uint8_t c) {
     else {
       _cursorX += FONT3X6_WIDTH + _letterSpacing;
     }
-
   }
-
-  return 1;
-
 }
 
 void Font3x6::printChar(const char c, const int8_t x, int8_t y) {

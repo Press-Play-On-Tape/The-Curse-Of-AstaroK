@@ -252,7 +252,7 @@ void playGame_Render() {
                 }
                 else {
                   font3x6.print(F(" x "));
-                  font3x6.print(qty);
+                  font3x6.printNumber(qty);
                 }
                 font3x6.print(static_cast<uint8_t>('\n'));
               }
@@ -275,11 +275,11 @@ void playGame_Render() {
         font3x6.setCursor(xPos + 8, yPos + 15);
         font3x6.print(F("Health :\nSkill :\nDefence :\nGold :\nDungeons :"));
         font3x6.setCursor(xPos + 54, yPos + 15);
-        font3x6.println(playGameVars.player.getHP());
-        font3x6.println(playGameVars.player.getSP());
-        font3x6.println(playGameVars.player.getDEFOverall());
-        font3x6.println(playGameVars.player.getGP());
-        font3x6.println(playGameVars.world.dungeon);
+        font3x6.printNumberln(playGameVars.player.getHP());
+        font3x6.printNumberln(playGameVars.player.getSP());
+        font3x6.printNumberln(playGameVars.player.getDEFOverall());
+        font3x6.printNumberln(playGameVars.player.getGP());
+        font3x6.printNumberln(playGameVars.world.dungeon);
 
         break;
 
@@ -325,8 +325,8 @@ void playGame_Render() {
             playGameVars.enemy.renderName(font3x6);
 
             font3x6.print(static_cast<uint8_t>('\n'));
-            font3x6.println(playGameVars.enemy.getHP());
-            font3x6.println(playGameVars.enemy.getDEF());
+            font3x6.printNumberln(playGameVars.enemy.getHP());
+            font3x6.printNumberln(playGameVars.enemy.getDEF());
             break;
 
           default:
@@ -400,7 +400,7 @@ void playGame_Render() {
                   playGame_YouRolledMessage(RuneCombination_Purchased_Captions_Length[playGameVars.matchedRuneCombination.id]);
                   font3x6.print(F("a "));
                   font3x6.print(readFlashStringPointer(&RuneCombination_Purchased_Captions[playGameVars.matchedRuneCombination.id]));
-                  font3x6.print(F("!"));
+                  font3x6.print('!');
                   break;
 
                 case RuneCombinationType_Standard::Start ... RuneCombinationType_Standard::End:
@@ -422,28 +422,28 @@ void playGame_Render() {
             case Constants::DialogueDelay_Fight_Damage_ThisRoll:
               drawMessageBox(1, 124);
               font3x6.print(F("You inflicted "));
-              font3x6.print(playGameVars.matchedRuneCombination.dmg1);
+              font3x6.printNumber(playGameVars.matchedRuneCombination.dmg1);
               font3x6.print(F(" pts of damage."));
               break;
 
             case Constants::DialogueDelay_Fight_Damage_PrevRoll:
               drawMessageBox(1, 124);
               font3x6.print(F("Plus an extra "));              
-              font3x6.print(playGameVars.matchedRuneCombination.getPrevDmg1(playGameVars.enemy.getEnemyType()));
+              font3x6.printNumber(playGameVars.matchedRuneCombination.getPrevDmg1(playGameVars.enemy.getEnemyType()));
               font3x6.print(F(" pts of damage."));
               break;
 
             case Constants::DialogueDelay_Fight_Health:
               drawMessageBox(1, 124);
               font3x6.print(F("You regained "));
-              font3x6.print(playGameVars.matchedRuneCombination.hp);
+              font3x6.printNumber(playGameVars.matchedRuneCombination.hp);
               font3x6.print(F(" health points."));
               break;
 
             case Constants::DialogueDelay_Enemy_HP_Steal:
               drawMessageBox(1, 122);
               font3x6.print(F("  Aztarok stole "));
-              font3x6.print(playGameVars.message.arrayIndex);
+              font3x6.printNumber(playGameVars.message.arrayIndex);
               font3x6.print(F(" hp points."));
               break;
 
@@ -461,7 +461,7 @@ void playGame_Render() {
 
               playGameVars.enemy.renderName(font3x6);
               font3x6.print(F(" attacks, "));
-              font3x6.print(playGameVars.dmgInflictedOnPlayer);
+              font3x6.printNumber(playGameVars.dmgInflictedOnPlayer);
               font3x6.print(F(" damage pts."));
               break;
 
@@ -499,13 +499,13 @@ void playGame_Render() {
             if (playGameVars.message.victoryGP > 0 && playGameVars.message.victorySP == 0) {
               drawMessageBox(1, 110);
               font3x6.print(F("You scored "));
-              font3x6.print(playGameVars.message.victoryGP);
+              font3x6.printNumber(playGameVars.message.victoryGP);
               font3x6.print(F(" gold coins."));
             }
             else if (playGameVars.message.victorySP > 0) {
               drawMessageBox(1, 110);
               font3x6.print(F("You scored "));
-              font3x6.print(playGameVars.message.victorySP);
+              font3x6.printNumber(playGameVars.message.victorySP);
               font3x6.print(F(" skill points."));
             }
 
@@ -605,10 +605,10 @@ void playGame_CommonShopItems(const uint8_t * shopKeeper, bool itemShop) {
 
   font3x6.setCursor(84, 53);
   if (itemShop) {
-    font3x6.print("GP");
+    font3x6.print(F("GP"));
   }
   else {
-    font3x6.print("SP");
+    font3x6.print(F("SP"));
   }
 
 }
@@ -649,10 +649,10 @@ void playGame_RenderNumber(uint8_t val) {
   font3x6.setCursor(101, 53);
   font3x6.setTextColor(BLACK);
 
-  font3x6.print("0");
-  if (val < 100)  font3x6.print("0");
-  if (val < 10)   font3x6.print("0");
-  font3x6.print(val);
+  font3x6.printNumber(0);
+  if (val < 100)  font3x6.printNumber(0);
+  if (val < 10)   font3x6.printNumber(0);
+  font3x6.printNumber(val);
   
   font3x6.setTextColor(WHITE);
 

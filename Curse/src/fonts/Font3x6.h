@@ -3,13 +3,21 @@
 #include <Arduino.h>
 #include <Print.h>
 
-class Font3x6 : public Print {
+class Font3x6 {
     
   public:
 
     Font3x6(uint8_t lineHeight = 9);   
 
-    virtual size_t write(uint8_t); // used by the Arduino Print class
+    void Font3x6::print(char c);
+    void print(char *str);
+    void print(const __FlashStringHelper *);
+    void printNumber(uint8_t n);
+    void printNumberln(uint8_t n);
+    void printMessage(uint8_t n);
+    
+    void Font3x6::write(uint8_t c);
+    
     void printChar(const char c, const int8_t x, int8_t y);
     void setCursor(const int8_t x, const int8_t y);
 

@@ -90,9 +90,9 @@ void titleScreen_Render() {
 
 		case 0 ... 70:
 			font3x6.setCursor(32, 21);
-			font3x6.print("Press Play On Tape");
+			font3x6.print(F("Press Play On Tape"));
 			font3x6.setCursor(49, 33);
-			font3x6.print("presents");
+			font3x6.print(F("presents"));
 			break;
 
 		case 71 ... 140:
