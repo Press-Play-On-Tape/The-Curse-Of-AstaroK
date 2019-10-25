@@ -72,7 +72,7 @@ void playGame_Render() {
       for (int16_t x = -16 + (playGameVars.world.foregroundXPos % 16); x < 128; x = x + 16) {
         SpritesB::drawOverwrite(x, 50, Images::Town_Gound, 0);
       }
-      
+
       playGameVars.player.render(arduboy, ardBitmap, false);
       playGame_RenderTownItems(RenderPosition::FrontOfPlayer);
 

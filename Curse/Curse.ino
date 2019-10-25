@@ -17,6 +17,7 @@
 
 #ifdef SOUNDS_ENABLED
 #include <ArduboyTones.h>
+#include "src/sounds/Sounds.h"
 #endif
 
 #ifndef DEBUG
@@ -42,15 +43,6 @@ SplashScreenStateVars splashScreenVars;
 TitleScreenStateVars titleScreenVars;
 PlayGameStateVars playGameVars;
 GameOverStateVars gameOverVars;
-
-#ifdef SOUNDS_ENABLED
-const uint16_t testSound[] PROGMEM = {
-  NOTE_C4,50, NOTE_D4,50, NOTE_E4,50, 
-  NOTE_C4,50, NOTE_D4,50, NOTE_E4,50, 
-  NOTE_C4,50, NOTE_D4,50, NOTE_E4,50, 
-  TONES_END
-};
-#endif
 
 void setup() {
 
