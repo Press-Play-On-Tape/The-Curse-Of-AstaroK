@@ -9,14 +9,14 @@ class Font3x6 {
 
     Font3x6(uint8_t lineHeight = 9);   
 
-    void Font3x6::print(char c);
+    void print(char c);
     void print(char *str);
     void print(const __FlashStringHelper *);
     void printNumber(uint8_t n);
     void printNumberln(uint8_t n);
     void printMessage(uint8_t n);
     
-    void Font3x6::write(uint8_t c);
+    void write(uint8_t c);
     
     void printChar(const char c, const int8_t x, int8_t y);
     void setCursor(const int8_t x, const int8_t y);
