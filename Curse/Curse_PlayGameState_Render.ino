@@ -2,9 +2,9 @@
 
 
 // ---------------------------------------------------------------------------------------------------------------------------
-//  Render the state .. 
+//  Render the state ..
 // ---------------------------------------------------------------------------------------------------------------------------
-// 
+//
 void playGame_Render() {
 
   TimeOfDay timeOfDay = TimeOfDay::Night;
@@ -17,7 +17,7 @@ void playGame_Render() {
 
       for (int16_t x = -4 + (playGameVars.world.cloudsXPos & 3); x < 128; x = x + 4) {
         SpritesB::drawOverwrite(x, 0, Images::Sky, 0);
-      } 
+      }
 
       for (int16_t x = -128 + (playGameVars.world.cloudsXPos & 127); x < 256; x = x + 128) {
         ardBitmap.drawCompressed(x, 0, Images::Cloud_01, WHITE, MIRROR_NONE);
@@ -34,7 +34,7 @@ void playGame_Render() {
       {
         int16_t xPos = playGameVars.world.buildingXPos;
         int16_t x = playGameVars.world.buildings[0];
-        
+
         SpritesB::drawExternalMask(x + xPos - 33, 4, Images::ItemsBuilding_Top, Images::ItemsBuilding_Top_Mask, 0, 0);
         SpritesB::drawOverwrite(x + xPos - 38, 22, Images::ItemsBuilding_Bottom, 0);
         SpritesB::drawExternalMask(x + xPos + 10, 12, Images::Pumpkin, Images::Pumpkin_Mask, 0, 0);
@@ -92,7 +92,7 @@ void playGame_Render() {
               playGame_CommonPrice(Images::UOM_GP, gp / 5);
 
               if (playGameVars.itemIdx < static_cast<uint8_t>(HelmetType::Count)) {
-                
+
                 ardBitmap.drawCompressed(5, 19, Images::ItemShop_HelmetBase, WHITE, MIRROR_NONE);
                 ardBitmap.drawCompressed_WithMask(24, 7, reinterpret_cast<const uint8_t *>(pgm_read_ptr(&Images::ItemShop_Helmet[playGameVars.itemIdx])), Images::ItemShop_Helmet_Mask, MIRROR_NONE);
 
@@ -109,7 +109,7 @@ void playGame_Render() {
               }
 
               playGame_RenderShopItemOrRune(reinterpret_cast<const uint8_t *>(pgm_read_ptr(&Images::ItemShop_Names[playGameVars.itemIdx])), reinterpret_cast<const uint8_t *>(pgm_read_ptr(&Images::ItemShop_Effect[playGameVars.itemIdx])));
-              
+
             }
             break;
 
@@ -189,9 +189,9 @@ void playGame_Render() {
       if (arduboy.everyXFrames(16)) { playGameVars.victoryFrame++; if (playGameVars.victoryFrame == 4) playGameVars.victoryFrame = 0; }
 
       if (playGameVars.gameOver) {
-        
+
         ardBitmap.drawCompressed(64, 28, Images::AztaroK_Dead, WHITE, MIRROR_NONE);
-      
+
       }
 
       playGame_RenderCastleInterior();
@@ -229,8 +229,8 @@ void playGame_Render() {
 
       case InventoryMode::Inventory:
 
-        font3x6.print(F(" Inventory"));
-        
+        font3x6.printMessage(Inventory_Title_Idx);
+
         if (playGameVars.player.getDistinctItemCount() == 0) {
           playGame_NoneMessage();
         }
@@ -244,14 +244,14 @@ void playGame_Render() {
 
             if (qty > 0) {
               if (renderedItems < 4) {
-                font3x6.print(readFlashStringPointer(&PlayerItems_Captions[x]));
+                font3x6.printMessage(PlayerItems_Caption00_Idx + x);
                 if (x < static_cast<uint8_t>(HelmetType::Count)) {
                   if (static_cast<uint8_t>(playGameVars.player.getHelmetType()) == x) {
                     SpritesB::drawSelfMasked(xPos + width - 10,  yPos + 19 + (renderedItems * 9), Images::Inventory_Helmet_Marker, 0);
                   }
                 }
                 else {
-                  font3x6.print(F(" x "));
+                  font3x6.printMessage(Inventory_Quantity_Idx);
                   font3x6.printNumber(qty);
                 }
                 font3x6.print(static_cast<uint8_t>('\n'));
@@ -271,9 +271,9 @@ void playGame_Render() {
 
       case InventoryMode::Statistics:
 
-        font3x6.print(F("Statistics"));
+        font3x6.printMessage(Statistics_Title_Idx);
         font3x6.setCursor(xPos + 8, yPos + 15);
-        font3x6.print(F("Health :\nSkill :\nDefence :\nGold :\nDungeons :"));
+        font3x6.printMessage(Statistics_Health_Idx);
         font3x6.setCursor(xPos + 54, yPos + 15);
         font3x6.printNumberln(playGameVars.player.getHP());
         font3x6.printNumberln(playGameVars.player.getSP());
@@ -285,7 +285,7 @@ void playGame_Render() {
 
       case InventoryMode::Runes:
 
-        font3x6.print(F("    Runes"));
+        font3x6.printMessage(Runes_Title_Idx);
 
         if (playGameVars.inventory.runeIdx == Constants::RuneNoValue) {
           playGame_NoneMessage();
@@ -297,13 +297,13 @@ void playGame_Render() {
           uint8_t count = playGameVars.player.getDistinctRuneCombinationCount();
 
           font3x6.setCursor(xPos + 10 + (count < 2 ? 8 : 0), yPos + 33);
-          font3x6.print(readFlashStringPointer(&RuneCombination_Purchased_Captions[playGameVars.inventory.runeIdx]));
+          font3x6.printMessage(RuneCombination_Purchased_Caption00_Idx + playGameVars.inventory.runeIdx);
           font3x6.setCursor(xPos + 10 + (count < 2 ? 8 : 0), yPos + 42);
-          font3x6.print(readFlashStringPointer(&Rune_Effect_Captions[playGameVars.inventory.runeIdx]));
+          font3x6.printMessage(Rune_Effect_Caption00_Idx + playGameVars.inventory.runeIdx);
 
           if (count > 1) {
-            SpritesB::drawSelfMasked(xPos + 58, yPos + 34, Images::Arrow_Up_Small, 0);            
-            SpritesB::drawSelfMasked(xPos + 58, yPos + 45, Images::Arrow_Down_Small, 0);            
+            SpritesB::drawSelfMasked(xPos + 58, yPos + 34, Images::Arrow_Up_Small, 0);
+            SpritesB::drawSelfMasked(xPos + 58, yPos + 45, Images::Arrow_Down_Small, 0);
           }
 
         }
@@ -312,7 +312,7 @@ void playGame_Render() {
 
       case InventoryMode::Enemy:
 
-        font3x6.print(F(" Enemy Sts"));
+        font3x6.printMessage(Enemy_Stats_Idx);
 
         switch (playGameVars.viewState) {
 
@@ -320,7 +320,7 @@ void playGame_Render() {
           case ViewState::InDungeon_PlayersTurn:
           case ViewState::InDungeon_EnemysTurn:
             font3x6.setCursor(xPos + 7, yPos + 15);
-            font3x6.print(F("Name:\nHealth :\nDefence :\n"));
+            font3x6.printMessage(Enemy_Stats_Idx);
             font3x6.setCursor(xPos + 43, yPos + 15);
             playGameVars.enemy.renderName(font3x6);
 
@@ -351,9 +351,9 @@ void playGame_Render() {
     drawMessageBox(c == 'c' ? 3 : 2, 88);
     font3x6.setCursor(40, 4);
 
-    font3x6.print(F("Save Game\nNew Game\n"));
+    font3x6.printMessage(Save_Game_Option_Idx);
     if (c == 'c') {
-      font3x6.print(F("Restore Game"));
+      font3x6.printMessage(Restore_Game_Option_Idx);
     }
 
     SpritesB::drawOverwrite(30, 5 + (playGameVars.inventory.saveGameIndex * 9), Images::Arrow_Right, 0);
@@ -368,9 +368,9 @@ void playGame_Render() {
 
         drawMessageBox(2, 130);
         font3x6.setCursor(8, 5);
-        font3x6.print(readFlashStringPointer(&Dialogue[playGameVars.message.arrayIndex + playGameVars.message.topLine]));
+        font3x6.printMessage(Dialogue_00_Idx + playGameVars.message.arrayIndex + playGameVars.message.topLine);
         font3x6.print(static_cast<uint8_t>('\n'));
-        font3x6.print(readFlashStringPointer(&Dialogue[playGameVars.message.arrayIndex + playGameVars.message.topLine + 1]));
+        font3x6.printMessage(Dialogue_00_Idx + playGameVars.message.arrayIndex + playGameVars.message.topLine + 1);
 
         if (playGameVars.message.topLine > 0) SpritesB::drawSelfMasked(116, 5, Images::Arrow_Up_Dialogue, 0);
         if (playGameVars.message.topLine + 2 < playGameVars.message.linesOverall) SpritesB::drawSelfMasked(116, 19, Images::Arrow_Down_Dialogue, 0);
@@ -389,7 +389,7 @@ void playGame_Render() {
 
         case ViewState::InDungeon_Entry:
         case ViewState::InDungeon_PlayersTurn:
-            
+
           switch (playGameVars.counter) {
 
             case Constants::DialogueDelay_Fight_Roll:
@@ -398,8 +398,8 @@ void playGame_Render() {
 
                 case static_cast<uint8_t>(RuneCombinationType_Purchased::FireBlaze) ... static_cast<uint8_t>(RuneCombinationType_Purchased::Count) - 1:
                   playGame_YouRolledMessage(RuneCombination_Purchased_Captions_Length[playGameVars.matchedRuneCombination.id]);
-                  font3x6.print(F("a "));
-                  font3x6.print(readFlashStringPointer(&RuneCombination_Purchased_Captions[playGameVars.matchedRuneCombination.id]));
+                  font3x6.printMessage(Purchased_A_Idx);
+                  font3x6.printMessage(RuneCombination_Purchased_Caption00_Idx + playGameVars.matchedRuneCombination.id);
                   font3x6.print('!');
                   break;
 
@@ -407,13 +407,13 @@ void playGame_Render() {
                   {
                     uint8_t index = playGameVars.matchedRuneCombination.id - RuneCombinationType_Standard::Start;
                     playGame_YouRolledMessage(RuneCombination_Standard_Captions_Length[index]);
-                    font3x6.print(readFlashStringPointer(&RuneCombination_Standard_Captions[index]));
+                    font3x6.printMessage(RuneCombination_Standard_51_Idx + index);
                   }
                   break;
 
                 case Constants::RuneNoValue:
                   playGame_YouRolledMessage(88);
-                  font3x6.print(F("nothing!"));
+                  font3x6.printMessage(Cast_Nothing_Idx);
                   break;
 
               }
@@ -421,30 +421,30 @@ void playGame_Render() {
 
             case Constants::DialogueDelay_Fight_Damage_ThisRoll:
               drawMessageBox(1, 124);
-              font3x6.print(F("You inflicted "));
+              font3x6.printMessage(You_Inflicted_Idx);
               font3x6.printNumber(playGameVars.matchedRuneCombination.dmg1);
-              font3x6.print(F(" pts of damage."));
+              font3x6.printMessage(Points_Damage_Idx);
               break;
 
             case Constants::DialogueDelay_Fight_Damage_PrevRoll:
               drawMessageBox(1, 124);
-              font3x6.print(F("Plus an extra "));              
+              font3x6.printMessage(Plus_Extra_Idx);
               font3x6.printNumber(playGameVars.matchedRuneCombination.getPrevDmg1(playGameVars.enemy.getEnemyType()));
-              font3x6.print(F(" pts of damage."));
+              font3x6.printMessage(Points_Damage_Idx);
               break;
 
             case Constants::DialogueDelay_Fight_Health:
               drawMessageBox(1, 124);
-              font3x6.print(F("You regained "));
+              font3x6.printMessage(You_Regained_Idx);
               font3x6.printNumber(playGameVars.matchedRuneCombination.hp);
-              font3x6.print(F(" health points."));
+              font3x6.printMessage(Health_Points_Idx);
               break;
 
             case Constants::DialogueDelay_Enemy_HP_Steal:
               drawMessageBox(1, 122);
-              font3x6.print(F("  Aztarok stole "));
+              font3x6.printMessage(Aztarok_Stole_Idx);
               font3x6.printNumber(playGameVars.message.arrayIndex);
-              font3x6.print(F(" hp points."));
+              font3x6.printMessage(Hp_Points_Idx);
               break;
 
           }
@@ -452,7 +452,7 @@ void playGame_Render() {
           break;
 
         case ViewState::InDungeon_EnemysTurn:
-        
+
           switch (playGameVars.counter) {
 
             case Constants::DialogueDelay_Enemy_Roll:
@@ -460,24 +460,24 @@ void playGame_Render() {
               drawMessageBox(1, 130);
 
               playGameVars.enemy.renderName(font3x6);
-              font3x6.print(F(" attacks, "));
+              font3x6.printMessage(Attacks_Idx);
               font3x6.printNumber(playGameVars.dmgInflictedOnPlayer);
-              font3x6.print(F(" damage pts."));
+              font3x6.printMessage(Damage_Points_Idx);
               break;
 
             case Constants::DialogueDelay_Enemy_Item_Steal:
               drawMessageBox(2, 122);
-              font3x6.print(F("The Gelatinous Cube stole a\n   "));
+              font3x6.printMessage(Gelly_Theft_Idx);
 
               if (playGameVars.message.arrayIndex < Constants::PlayerItems_Count) {
-                font3x6.print(readFlashStringPointer(&PlayerItems_Captions[playGameVars.message.arrayIndex]));
+                font3x6.printMessage(PlayerItems_Caption00_Idx + playGameVars.message.arrayIndex);
               }
               else {
-                font3x6.print(readFlashStringPointer(&RuneCombination_Purchased_Captions[playGameVars.message.arrayIndex - Constants::PlayerItems_Count]));                
-                font3x6.print(F(" rune"));
+                font3x6.printMessage(RuneCombination_Purchased_Caption00_Idx + playGameVars.message.arrayIndex - Constants::PlayerItems_Count);
+                font3x6.printMessage(Rune_Idx);
               }
 
-              font3x6.print(F(" from you!"));
+              font3x6.printMessage(From_You_Idx);
               break;
 
             default: break;
@@ -489,24 +489,24 @@ void playGame_Render() {
         case ViewState::InDungeon_EnemyDead:
 
           if (playGameVars.gameOver) {
-            
+
             drawMessageBox(2, 124);
-            font3x6.print(F(" You killed Astarok and freed\nthe villagers from the curse!"));
+            font3x6.printMessage(You_Win_Idx);
 
           }
           else {
 
             if (playGameVars.message.victoryGP > 0 && playGameVars.message.victorySP == 0) {
               drawMessageBox(1, 110);
-              font3x6.print(F("You scored "));
+              font3x6.printMessage(You_Scored_Idx);
               font3x6.printNumber(playGameVars.message.victoryGP);
-              font3x6.print(F(" gold coins."));
+              font3x6.printMessage(Gold_Coins_Idx);
             }
             else if (playGameVars.message.victorySP > 0) {
               drawMessageBox(1, 110);
-              font3x6.print(F("You scored "));
+              font3x6.printMessage(You_Scored_Idx);
               font3x6.printNumber(playGameVars.message.victorySP);
-              font3x6.print(F(" skill points."));
+              font3x6.printMessage(Skill_Points_Idx);
             }
 
           }
@@ -514,7 +514,7 @@ void playGame_Render() {
 
         case ViewState::InDungeon_PlayerDead:
             drawMessageBox(2, 112);
-            font3x6.print(F("You died! Lose half of your\n      gold and skill points!"));
+            font3x6.printMessage(You_Lost_Idx);
             break;
 
         default: break;
@@ -538,10 +538,10 @@ void playGame_Render() {
 
 void playGame_RenderTrees(int16_t xPos) {
 
-	for (uint8_t index = 0; index < Constants::Tree_Count; ++index) {		
+	for (uint8_t index = 0; index < Constants::Tree_Count; ++index) {
 
 		int16_t x = pgm_read_word(&Data::Trees[index].offset);
-		uint8_t treeIndex = pgm_read_byte(&Data::Trees[index].tree);		
+		uint8_t treeIndex = pgm_read_byte(&Data::Trees[index].tree);
 
     #ifdef COMPRESSED_TREES
       #ifdef TWO_TREE_TYPES
@@ -554,7 +554,7 @@ void playGame_RenderTrees(int16_t xPos) {
     #endif
 
 	}
-  
+
 }
 
 void playGame_RenderCastleInterior() {
@@ -605,10 +605,10 @@ void playGame_CommonShopItems(const uint8_t * shopKeeper, bool itemShop) {
 
   font3x6.setCursor(84, 53);
   if (itemShop) {
-    font3x6.print(F("GP"));
+    font3x6.printMessage(GP_Idx);
   }
   else {
-    font3x6.print(F("SP"));
+    font3x6.printMessage(SP_Idx);
   }
 
 }
@@ -624,14 +624,14 @@ void playGame_YouRolledMessage(uint8_t width) {
 
   drawMessageBox(1, width);
   font3x6.setCursor(64 - (width / 2) + 12, 5);
-  font3x6.print(F("You cast "));
+  font3x6.printMessage(You_Cast_Idx);
 
 }
 
 void playGame_NoneMessage() {
 
   font3x6.setCursor(82, 26);
-  font3x6.print(F("None !"));
+  font3x6.printMessage(None_Idx);
 
 }
 
@@ -640,12 +640,12 @@ void playGame_RenderTownItems(RenderPosition renderPosition) {
 
     for (uint8_t x = 0; x < playGameVars.world.townItems_Size; x++) {
       playGameVars.world.townItems[x].render(arduboy, ardBitmap, playGameVars.world.buildingXPos, renderPosition, playGameVars.gameOver);
-    }  
+    }
 
 }
 
 void playGame_RenderNumber(uint8_t val) {
-  
+
   font3x6.setCursor(101, 53);
   font3x6.setTextColor(BLACK);
 
@@ -653,7 +653,7 @@ void playGame_RenderNumber(uint8_t val) {
   if (val < 100)  font3x6.printNumber(0);
   if (val < 10)   font3x6.printNumber(0);
   font3x6.printNumber(val);
-  
+
   font3x6.setTextColor(WHITE);
 
 }
@@ -679,7 +679,7 @@ void playGame_RenderRuneHand(const uint8_t x, const uint8_t y, const uint8_t spa
     uint8_t value = rune.getValue();
     bool reroll = rune.getReroll();
     bool isRotating = rune.isRotating();
-    
+
     ardBitmap.drawCompressed(z, y, reinterpret_cast<const uint8_t *>(pgm_read_ptr(&Images::Rune_Frame[frame])), WHITE, MIRROR_NONE);
     if (!reroll && ! isRotating) SpritesB::drawOverwrite(z + 3, y + 4, Images::Rune_Symbols, value);
 

@@ -172,6 +172,25 @@ void Font3x6::print(const __FlashStringHelper *ifsh)
   }
 }
 
+void Font3x6::printMessage(uint8_t idx)
+{
+  const uint8_t *p = messages;
+  while (idx) {
+    while(1) {  
+      uint8_t c = pgm_read_byte(p) ;
+      ++p;
+      if (c >= 0x80) break;
+    }
+    --idx;
+  }
+  while (1) {
+    uint8_t c = pgm_read_byte(p);
+    write(c);
+    ++p;
+    if (c >= 0x80) break;
+  }
+}
+
 void Font3x6::printNumber(uint8_t n)
 {
   char buf[4];
@@ -192,6 +211,7 @@ void Font3x6::printNumberln(uint8_t n)
 }
 
 void Font3x6::write(uint8_t c) {
+  c &= 0x7F;//Strip terminator bit  
   if (c == '\n')     {
     _cursorX = _baseX;
     _cursorY += _lineHeight;
