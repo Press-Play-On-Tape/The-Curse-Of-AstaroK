@@ -28,17 +28,17 @@ namespace Sounds {
   };
 
   const uint16_t purchase[] PROGMEM = {
-    NOTE_FS5, 2, NOTE_F6, 6, NOTE_GS6, 8, NOTE_F6, 4,
+    NOTE_B5,100, NOTE_D5,100, NOTE_F5,100,
     TONES_END
   };
 
   const uint16_t cast[] PROGMEM = {
-    NOTE_F2,22, NOTE_F2,22, 
+    NOTE_C5,75, NOTE_REST, 15, NOTE_A5,75, NOTE_REST, 15, NOTE_E5,75,  
     TONES_END
   };
 
   const uint16_t touch[] PROGMEM = {
-    NOTE_F3,22, NOTE_F3,22, 
+    NOTE_C5,75, NOTE_REST, 15, NOTE_C5,75, 
     TONES_END
   };
 

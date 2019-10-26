@@ -29,8 +29,8 @@ constexpr World world PROGMEM {
 
 constexpr uint8_t player[] PROGMEM {  
 	100, //HP
-	5, // gp
-	0, // sp
+	250, // gp
+	250, // sp
 	0, // def
 	Constants::Player_Ground_Level, // y	
 	0, // frame
@@ -71,5 +71,3 @@ void playGame_ResetGame() {
 	playGameVars.numberOfRecasts = 3;
 
 }
-
-
