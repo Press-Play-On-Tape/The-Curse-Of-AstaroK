@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Arduino.h>
-#include <Print.h>
+#include "../utils/Constants.h"
 
 class Font3x6 {
     
@@ -9,9 +9,10 @@ class Font3x6 {
 
     Font3x6(uint8_t lineHeight = 9);   
 
-    void print(char c);
+    void Font3x6::print(char c);
     void print(char *str);
     void print(const __FlashStringHelper *);
+    void PrintMessage(uint8_t idx);
     void printNumber(uint8_t n);
     void printNumberln(uint8_t n);
     void printMessage(uint8_t n);

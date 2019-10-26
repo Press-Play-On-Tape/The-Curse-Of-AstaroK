@@ -4,7 +4,6 @@
 #include "../utils/Constants.h"
 #include "../ardBitmap/ArdBitmap.h"
 #include "../fonts/Font3x6.h"
-#include "../utils/FlashStringHelper.h"
 
 Enemy::Enemy() {}
 
@@ -152,7 +151,7 @@ void Enemy::renderName(Font3x6 &font3x6) {
 
   }
   else {
-    font3x6.print(F("ASTAROK"));
+    font3x6.printMessage(Astarok_Name_Idx);
   }
   
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Enums.h"
+#include "../utils/messages-constants.h"
 
 #define _DEBUG
 #define _CHANGE_ENEMY
@@ -135,40 +136,40 @@ const uint8_t * const Tombstone_Inscriptions[] PROGMEM = {
 const uint8_t RandomNames[] PROGMEM = "TARATOMAMOMENOVASOSIKAKIMUNUTUSURESETEPEPOPIPA";
 const uint8_t RandomNames_Count = 23; 
 
-const uint8_t Diagloue_00[] PROGMEM = "Welcome traveller to the town";
-const uint8_t Diagloue_01[] PROGMEM = "of Griford. The evil AstaroK";
-const uint8_t Diagloue_02[] PROGMEM = "has turned us all into pumpkin";
-const uint8_t Diagloue_03[] PROGMEM = "people. Please help us defeat";
-const uint8_t Diagloue_04[] PROGMEM = "this crazy wizard!";
-const uint8_t Diagloue_05[] PROGMEM = "Be sure to equip yourself";
-const uint8_t Diagloue_06[] PROGMEM = "properly. You can press \"$% to";
-const uint8_t Diagloue_07[] PROGMEM = "access your inventory and to";
-const uint8_t Diagloue_08[] PROGMEM = "view information about you or";
-const uint8_t Diagloue_09[] PROGMEM = "your enemies.";
-const uint8_t Diagloue_10[] PROGMEM = "In combat, cast runes to score";
-const uint8_t Diagloue_11[] PROGMEM = "'poker' hands. Pressing \"#% will";
-const uint8_t Diagloue_12[] PROGMEM = "cast the runes - jump and";
-const uint8_t Diagloue_13[] PROGMEM = "touch runes to select them";
-const uint8_t Diagloue_14[] PROGMEM = "for recasting. Normally you";
-const uint8_t Diagloue_15[] PROGMEM = "can cast 3 times, but some";
-const uint8_t Diagloue_16[] PROGMEM = "items might give you extra.";
+const uint8_t Dialogue_00[] PROGMEM = "Welcome traveller to the town";
+const uint8_t Dialogue_01[] PROGMEM = "of Griford. The evil AstaroK";
+const uint8_t Dialogue_02[] PROGMEM = "has turned us all into pumpkin";
+const uint8_t Dialogue_03[] PROGMEM = "people. Please help us defeat";
+const uint8_t Dialogue_04[] PROGMEM = "this crazy wizard!";
+const uint8_t Dialogue_05[] PROGMEM = "Be sure to equip yourself";
+const uint8_t Dialogue_06[] PROGMEM = "properly. You can press \"$% to";
+const uint8_t Dialogue_07[] PROGMEM = "access your inventory and to";
+const uint8_t Dialogue_08[] PROGMEM = "view information about you or";
+const uint8_t Dialogue_09[] PROGMEM = "your enemies.";
+const uint8_t Dialogue_10[] PROGMEM = "In combat, cast runes to score";
+const uint8_t Dialogue_11[] PROGMEM = "'poker' hands. Pressing \"#% will";
+const uint8_t Dialogue_12[] PROGMEM = "cast the runes - jump and";
+const uint8_t Dialogue_13[] PROGMEM = "touch runes to select them";
+const uint8_t Dialogue_14[] PROGMEM = "for recasting. Normally you";
+const uint8_t Dialogue_15[] PROGMEM = "can cast 3 times, but some";
+const uint8_t Dialogue_16[] PROGMEM = "items might give you extra.";
 
 const uint8_t * const Dialogue[] PROGMEM = { 
-  Diagloue_00,
-  Diagloue_01,
-  Diagloue_02,
-  Diagloue_03,
-  Diagloue_04,
-  Diagloue_05,
-  Diagloue_06,
-  Diagloue_07,
-  Diagloue_08,
-  Diagloue_09,
-  Diagloue_10,
-  Diagloue_11,
-  Diagloue_12,
-  Diagloue_13,
-  Diagloue_14,
-  Diagloue_15,
-  Diagloue_16,
+  Dialogue_00,
+  Dialogue_01,
+  Dialogue_02,
+  Dialogue_03,
+  Dialogue_04,
+  Dialogue_05,
+  Dialogue_06,
+  Dialogue_07,
+  Dialogue_08,
+  Dialogue_09,
+  Dialogue_10,
+  Dialogue_11,
+  Dialogue_12,
+  Dialogue_13,
+  Dialogue_14,
+  Dialogue_15,
+  Dialogue_16,
 };
