@@ -163,7 +163,7 @@ void playGame_Update() {
 
 						if (playGameVars.world.townItems[Constants::HP_Index].getEnabled() && playGame_CloseTo(playGameVars.world.townItems[Constants::HP_Index].getX() + x - 6)) {
 
-							playGame_SaveMessage(F("You picked up some HP!"), 1, 94, Constants::DialogueDelay);
+							playGame_SaveMessage(Pickup_HP_Idx, 1, 94, Constants::DialogueDelay);
 							playGameVars.world.townItems[Constants::HP_Index].setEnabled(false);
 							playGameVars.player.incHP(arduboy.randomLFSR(5, 15));
 
@@ -175,14 +175,14 @@ void playGame_Update() {
 
 						if (playGame_CloseTo(Constants::Tombstone_Locations[y] + x - 6)) {
 
-							playGame_SaveMessage(readFlashStringPointer(&Tombstone_Inscriptions[y]), 2, 94, Constants::DialogueDelay);
+							playGame_SaveMessage(Tombstone_Inscription_00_Idx + y, 2, 94, Constants::DialogueDelay);
 
 						}
 
 						if (playGame_CloseTo(Constants::NPC_Locations[y] + x)) {
 
 							if (playGameVars.gameOver) {
-								playGame_SaveMessage(F("    Thank you for saving\n      us from the Curse!"), 2, 104, Constants::DialogueDelay);
+								playGame_SaveMessage(Thank_You_Idx, 2, 104, Constants::DialogueDelay);
 							}
 							else {
 								playGame_SaveMessage_MultiPart(pgm_read_byte(&multiPart_ArrayIndex[y]), 2, pgm_read_byte(&multiPart_LinesOverall[y]));
@@ -244,7 +244,7 @@ void playGame_Update() {
 
 										if (c == 'c') {
 
-											playGame_SaveMessage(F(" Overwrite existing game?\n          \"#% Yes    \"$% No"), 2, 104, 255);
+											playGame_SaveMessage(Overwrite_Confirm_Idx, 2, 104, 255);
 
 										}
 										else {
@@ -254,12 +254,12 @@ void playGame_Update() {
 									break;
 
 								case 1:
-									playGame_SaveMessage(F("  Start a new game?\n     \"#% Yes    \"$% No"), 2, 84, 254);
+									playGame_SaveMessage(New_Game_Confirm_Idx, 2, 84, 254);
 									break;
 
 								case 2:
 									EEPROM.get(100, playGameVars);
-									playGame_SaveMessage(F("  Game state restored!"), 1, 100, Constants::DialogueDelay);
+									playGame_SaveMessage(Game_Restored_Idx, 1, 100, Constants::DialogueDelay);
 
 							}
 
@@ -334,14 +334,14 @@ void playGame_Update() {
 
 						case PlayerItemType::Helmet:
 							if (static_cast<uint8_t>(playGameVars.player.getHelmetTypeCount(static_cast<HelmetType>(playerItem.itemIndex))) == 1) {
-								playGame_SaveMessage(F("    You already have\n one of those helmets!"), 2, 94, Constants::DialogueDelay);
+								playGame_SaveMessage(Same_Helmet_Idx, 2, 94, Constants::DialogueDelay);
 								purchaseCancelled = true;
 							}
 							break;
 
 						case PlayerItemType::Potion:
 							if (playGameVars.player.getItemCount(static_cast<uint8_t>(HelmetType::Count) + playerItem.itemIndex) == Constants::PlayerPotions_InvMax) {
-								playGame_SaveMessage(F("  You already have as\nmany of these potions\n  as you can carry !"), 3, 88, Constants::DialogueDelay);
+								playGame_SaveMessage(Max_Potions_Idx, 3, 88, Constants::DialogueDelay);
 								purchaseCancelled = true;
 							}
 							break;
@@ -356,11 +356,11 @@ void playGame_Update() {
 					if (!purchaseCancelled) {
 
 						if (playerItem.gold <= playGameVars.player.getGP()) {
-							playGame_SaveMessage(F("   Buy this item?\n   \"#% Yes    \"$% No"), 2, 76);
+							playGame_SaveMessage(Buy_Item_Idx, 2, 76);
 							playGameVars.viewState = ViewState::InShopItems_ConfirmPurchase;
 						}
 						else {
-							playGame_SaveMessage(F("You do not have\n   enough gold!"), 2, 70, Constants::DialogueDelay);
+							playGame_SaveMessage(No_GP_Idx, 2, 70, Constants::DialogueDelay);
 						}
 
 					}
@@ -454,7 +454,7 @@ void playGame_Update() {
 
 						default:						
 							if (playGameVars.player.getRuneCombination(playGameVars.runeIdx) > 0) {
-								playGame_SaveMessage(F("   You are carrying\n one of those runes!"), 2, 86, Constants::DialogueDelay);
+								playGame_SaveMessage(Same_Rune_Idx, 2, 86, Constants::DialogueDelay);
 								purchaseCancelled = true;
 							}
 							break;
@@ -464,11 +464,11 @@ void playGame_Update() {
 					if (!purchaseCancelled) {
 
 						if (sp <= playGameVars.player.getSP()) {
-							playGame_SaveMessage(F("  Buy this rune?\n  \"#% Yes    \"$% No"), 2, 74);
+							playGame_SaveMessage(Buy_Rune_Idx, 2, 74);
 							playGameVars.viewState = ViewState::InShopRunes_ConfirmPurchase;
 						}
 						else {
-							playGame_SaveMessage(F(" You do not have\n    enough SP!"), 2, 70, Constants::DialogueDelay);
+							playGame_SaveMessage(No_SP_Idx, 2, 70, Constants::DialogueDelay);
 						}
 
 					}
@@ -530,7 +530,7 @@ void playGame_Update() {
 				}
 				else {
 					playGame_ChangeViewState(ViewState::InDungeon_EnemysAttacksFirst);
-					playGame_SaveMessage(F("        A monster attacks you!"), 1, 130, Constants::DialogueDelay);
+					playGame_SaveMessage(Monster_Attack_Idx, 1, 130, Constants::DialogueDelay);
 				}
 			}
 
@@ -733,7 +733,7 @@ void playGame_Update() {
 									playGameVars.runes.checkRuneCombination(playGameVars.player, matchedRuneCombination);
 	
 									if (!playGameVars.runes.anyRotatingOrRerolling() && matchedRuneCombination.id == Constants::RuneNoValue) {
-										playGame_SaveMessage(F("Throw the runes again!"), 1, 94, Constants::DialogueDelay);
+										playGame_SaveMessage(Throw_Again_Idx, 1, 94, Constants::DialogueDelay);
 									}
 									else {
 
@@ -802,7 +802,7 @@ void playGame_Update() {
 
 
 								playGameVars.runes.checkRuneCombination(playGameVars.player, playGameVars.matchedRuneCombination);
-								playGameVars.message.message = nullptr;
+								playGameVars.message.message = 0;
 
 								if (justPressed & A_BUTTON) {
 									playGameVars.counter = Constants::DialogueDelay_Fight_Roll;
@@ -833,7 +833,7 @@ void playGame_Update() {
 		case ViewState::InDungeon_EnemysAttacksFirst:
 
 				if (justPressed & A_BUTTON || justPressed & B_BUTTON) {
-					playGameVars.message.message = nullptr;
+					playGameVars.message.message = 0;
 					playGame_ChangeViewState(ViewState::InDungeon_EnemysTurn);
 				}
 
@@ -1149,7 +1149,7 @@ void playGame_SaveGame() {
 	playGameVars.showSaveDialogue = false;
 	playGameVars.hasBeenSaved = 'c';
 	EEPROM.put(100, playGameVars);
-	playGame_SaveMessage(F("  Game state saved!"), 1, 88, Constants::DialogueDelay);
+	playGame_SaveMessage(Game_Saved_Idx, 1, 88, Constants::DialogueDelay);
 
 };
 

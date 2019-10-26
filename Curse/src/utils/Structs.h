@@ -30,9 +30,7 @@ struct Message {
   uint8_t linesOverall;
   uint8_t arrayIndex;
   bool renderRequired;
-
-  const __FlashStringHelper *message;
-//  const __FlashStringHelper *message2;
+  uint8_t message;
 };
 
 struct Inventory {

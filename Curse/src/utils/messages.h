@@ -42,6 +42,10 @@ const uint8_t Presents[] PROGMEM = "presents";
 const uint8_t Astarok_Name[] PROGMEM = "ASTAROK";
 
 //from Constants.h
+const uint8_t Tombstone_Inscription_00[] PROGMEM = "   Here lies Vampirics.\n  Born 1843 - Dec 1882";
+const uint8_t Tombstone_Inscription_01[] PROGMEM = " Rest In Peace Filmote.\n  Born 1841 - Dec 1879";
+const uint8_t Tombstone_Inscription_02[] PROGMEM = "   Press Play On Tape\n     Developed 2019";
+
 const uint8_t Dialogue_00[] PROGMEM = "Welcome traveller to the town";
 const uint8_t Dialogue_01[] PROGMEM = "of Griford. The evil AstaroK";
 const uint8_t Dialogue_02[] PROGMEM = "has turned us all into pumpkin";
@@ -83,3 +87,21 @@ const uint8_t RuneCombination_Standard_52[] PROGMEM = "a Four of a Kind!";
 const uint8_t RuneCombination_Standard_53[] PROGMEM = "a Three of a Kind!";
 const uint8_t RuneCombination_Standard_54[] PROGMEM = "Two Pairs!";
 const uint8_t RuneCombination_Standard_55[] PROGMEM = "a Full House!";
+
+//from Curse_PlayGameState_Update.ino
+//Note: non of these messages may be the 1st message to prevent them from having a Idx of 0)
+const uint8_t Pickup_HP[] PROGMEM = "You picked up some HP!"
+const uint8_t Thank_You[] PROGMEM = "    Thank you for saving\n      us from the Curse!"
+const uint8_t Overwrite_Confirm[] PROGMEM = " Overwrite existing game?\n          \"#% Yes    \"$% No"
+const uint8_t New_Game_Confirm[] PROGMEM = "  Start a new game?\n     \"#% Yes    \"$% No"
+const uint8_t Game_Restored[] PROGMEM = "  Game state restored!"
+const uint8_t Same_Helmet[] PROGMEM = "    You already have\n one of those helmets!"
+const uint8_t Max_Potions[] PROGMEM = "  You already have as\nmany of these potions\n  as you can carry !"
+const uint8_t Buy_Item[] PROGMEM = "   Buy this item?\n   \"#% Yes    \"$% No"
+const uint8_t No_GP[] PROGMEM = "You do not have\n   enough gold!"
+const uint8_t Same_Rune[] PROGMEM = "   You are carrying\n one of those runes!"
+const uint8_t Buy_Rune[] PROGMEM = "  Buy this rune?\n  \"#% Yes    \"$% No"
+const uint8_t No_SP[] PROGMEM = " You do not have\n    enough SP!"
+const uint8_t Monster_Attack[] PROGMEM = "        A monster attacks you!"
+const uint8_t Throw_Again[] PROGMEM = "Throw the runes again!"
+const uint8_t Game_Saved[] PROGMEM = "  Game state saved!"

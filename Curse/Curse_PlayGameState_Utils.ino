@@ -82,19 +82,19 @@ void playGame_SaveMessage_MultiPart(uint8_t arrayIndex, const uint8_t delay) {
 
 }
 
-void playGame_SaveMessage(const __FlashStringHelper *message, const uint8_t lines, const uint8_t width, const uint8_t delay) {
+void playGame_SaveMessage(const uint8_t message, const uint8_t lines, const uint8_t width, const uint8_t delay) {
 
 	playGame_SaveMessage(message, lines, 1, width, delay);
 
 }
 
-void playGame_SaveMessage(const __FlashStringHelper *message, const uint8_t lines, const uint8_t width) {
+void playGame_SaveMessage(const uint8_t message, const uint8_t lines, const uint8_t width) {
 
 	playGame_SaveMessage(message, lines, 1, width, 0);
 
 }
 
-void playGame_SaveMessage(const __FlashStringHelper *message, const uint8_t lines, const uint8_t linesOverall, const uint8_t width, const uint8_t delay) {
+void playGame_SaveMessage(const uint8_t message, const uint8_t lines, const uint8_t linesOverall, const uint8_t width, const uint8_t delay) {
 
 	playGameVars.counter = delay;
 
@@ -281,7 +281,7 @@ void playGame_HandleMessages(uint8_t & justPressed) {
 }
 
 
-void drawMessageBox(const __FlashStringHelper *message1, const __FlashStringHelper *message2, const uint8_t lines, const uint8_t width) {
+void drawMessageDialogBox(const uint8_t message1, const uint8_t message2, const uint8_t lines, const uint8_t width) {
 
 	const int8_t left = 64 - (width / 2);
 	const uint8_t yBottom = (lines * 9) + 11;
@@ -289,14 +289,14 @@ void drawMessageBox(const __FlashStringHelper *message1, const __FlashStringHelp
 	drawMessageBox(left, -1, width, yBottom);
 
   font3x6.setCursor(left + 8, 5);
- 	font3x6.print(message1);
+ 	font3x6.printMessage(message1);
  	font3x6.print(static_cast<uint8_t>('\n'));
- 	font3x6.print(message2);
+ 	font3x6.printMessage(message2);
 
 }
 
 
-void drawMessageBox(const __FlashStringHelper *message, const uint8_t lines, const uint8_t width) {
+void drawMessageDialogBox(const uint8_t message, const uint8_t lines, const uint8_t width) {
 
 	const int8_t left = 64 - (width / 2);
 	const uint8_t yBottom = (lines * 9) + 11;
@@ -304,7 +304,7 @@ void drawMessageBox(const __FlashStringHelper *message, const uint8_t lines, con
 	drawMessageBox(left, -1, width, yBottom);
 
   font3x6.setCursor(left + 8, 5);
-  font3x6.print(message);
+  font3x6.printMessage(message);
 
 }
 
