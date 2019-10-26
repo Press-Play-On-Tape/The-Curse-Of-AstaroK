@@ -1,6 +1,6 @@
 #pragma once
 
-// Imported 71 messages from "messages.h"
+// Imported 89 messages from "messages.h"
 
 constexpr uint8_t Inventory_Title_Idx = 0;
 constexpr uint8_t Inventory_Quantity_Idx = 1;
@@ -37,42 +37,60 @@ constexpr uint8_t None_Idx = 31;
 constexpr uint8_t Press_Play_Idx = 32;
 constexpr uint8_t Presents_Idx = 33;
 constexpr uint8_t Astarok_Name_Idx = 34;
-constexpr uint8_t Dialogue_00_Idx = 35;
-constexpr uint8_t Dialogue_01_Idx = 36;
-constexpr uint8_t Dialogue_02_Idx = 37;
-constexpr uint8_t Dialogue_03_Idx = 38;
-constexpr uint8_t Dialogue_04_Idx = 39;
-constexpr uint8_t Dialogue_05_Idx = 40;
-constexpr uint8_t Dialogue_06_Idx = 41;
-constexpr uint8_t Dialogue_07_Idx = 42;
-constexpr uint8_t Dialogue_08_Idx = 43;
-constexpr uint8_t Dialogue_09_Idx = 44;
-constexpr uint8_t Dialogue_10_Idx = 45;
-constexpr uint8_t Dialogue_11_Idx = 46;
-constexpr uint8_t Dialogue_12_Idx = 47;
-constexpr uint8_t Dialogue_13_Idx = 48;
-constexpr uint8_t Dialogue_14_Idx = 49;
-constexpr uint8_t Dialogue_15_Idx = 50;
-constexpr uint8_t Dialogue_16_Idx = 51;
-constexpr uint8_t PlayerItems_Caption00_Idx = 52;
-constexpr uint8_t PlayerItems_Caption01_Idx = 53;
-constexpr uint8_t PlayerItems_Caption02_Idx = 54;
-constexpr uint8_t PlayerItems_Caption03_Idx = 55;
-constexpr uint8_t PlayerItems_Caption04_Idx = 56;
-constexpr uint8_t PlayerItems_Caption05_Idx = 57;
-constexpr uint8_t RuneCombination_Purchased_Caption00_Idx = 58;
-constexpr uint8_t RuneCombination_Purchased_Caption01_Idx = 59;
-constexpr uint8_t RuneCombination_Purchased_Caption02_Idx = 60;
-constexpr uint8_t RuneCombination_Purchased_Caption03_Idx = 61;
-constexpr uint8_t Rune_Effect_Caption00_Idx = 62;
-constexpr uint8_t Rune_Effect_Caption01_Idx = 63;
-constexpr uint8_t Rune_Effect_Caption02_Idx = 64;
-constexpr uint8_t Rune_Effect_Caption03_Idx = 65;
-constexpr uint8_t RuneCombination_Standard_51_Idx = 66;
-constexpr uint8_t RuneCombination_Standard_52_Idx = 67;
-constexpr uint8_t RuneCombination_Standard_53_Idx = 68;
-constexpr uint8_t RuneCombination_Standard_54_Idx = 69;
-constexpr uint8_t RuneCombination_Standard_55_Idx = 70;
+constexpr uint8_t Tombstone_Inscription_00_Idx = 35;
+constexpr uint8_t Tombstone_Inscription_01_Idx = 36;
+constexpr uint8_t Tombstone_Inscription_02_Idx = 37;
+constexpr uint8_t Dialogue_00_Idx = 38;
+constexpr uint8_t Dialogue_01_Idx = 39;
+constexpr uint8_t Dialogue_02_Idx = 40;
+constexpr uint8_t Dialogue_03_Idx = 41;
+constexpr uint8_t Dialogue_04_Idx = 42;
+constexpr uint8_t Dialogue_05_Idx = 43;
+constexpr uint8_t Dialogue_06_Idx = 44;
+constexpr uint8_t Dialogue_07_Idx = 45;
+constexpr uint8_t Dialogue_08_Idx = 46;
+constexpr uint8_t Dialogue_09_Idx = 47;
+constexpr uint8_t Dialogue_10_Idx = 48;
+constexpr uint8_t Dialogue_11_Idx = 49;
+constexpr uint8_t Dialogue_12_Idx = 50;
+constexpr uint8_t Dialogue_13_Idx = 51;
+constexpr uint8_t Dialogue_14_Idx = 52;
+constexpr uint8_t Dialogue_15_Idx = 53;
+constexpr uint8_t Dialogue_16_Idx = 54;
+constexpr uint8_t PlayerItems_Caption00_Idx = 55;
+constexpr uint8_t PlayerItems_Caption01_Idx = 56;
+constexpr uint8_t PlayerItems_Caption02_Idx = 57;
+constexpr uint8_t PlayerItems_Caption03_Idx = 58;
+constexpr uint8_t PlayerItems_Caption04_Idx = 59;
+constexpr uint8_t PlayerItems_Caption05_Idx = 60;
+constexpr uint8_t RuneCombination_Purchased_Caption00_Idx = 61;
+constexpr uint8_t RuneCombination_Purchased_Caption01_Idx = 62;
+constexpr uint8_t RuneCombination_Purchased_Caption02_Idx = 63;
+constexpr uint8_t RuneCombination_Purchased_Caption03_Idx = 64;
+constexpr uint8_t Rune_Effect_Caption00_Idx = 65;
+constexpr uint8_t Rune_Effect_Caption01_Idx = 66;
+constexpr uint8_t Rune_Effect_Caption02_Idx = 67;
+constexpr uint8_t Rune_Effect_Caption03_Idx = 68;
+constexpr uint8_t RuneCombination_Standard_51_Idx = 69;
+constexpr uint8_t RuneCombination_Standard_52_Idx = 70;
+constexpr uint8_t RuneCombination_Standard_53_Idx = 71;
+constexpr uint8_t RuneCombination_Standard_54_Idx = 72;
+constexpr uint8_t RuneCombination_Standard_55_Idx = 73;
+constexpr uint8_t Pickup_HP_Idx = 74;
+constexpr uint8_t Thank_You_Idx = 75;
+constexpr uint8_t Overwrite_Confirm_Idx = 76;
+constexpr uint8_t New_Game_Confirm_Idx = 77;
+constexpr uint8_t Game_Restored_Idx = 78;
+constexpr uint8_t Same_Helmet_Idx = 79;
+constexpr uint8_t Max_Potions_Idx = 80;
+constexpr uint8_t Buy_Item_Idx = 81;
+constexpr uint8_t No_GP_Idx = 82;
+constexpr uint8_t Same_Rune_Idx = 83;
+constexpr uint8_t Buy_Rune_Idx = 84;
+constexpr uint8_t No_SP_Idx = 85;
+constexpr uint8_t Monster_Attack_Idx = 86;
+constexpr uint8_t Throw_Again_Idx = 87;
+constexpr uint8_t Game_Saved_Idx = 88;
 
 const uint8_t messages[] PROGMEM = {
 ' ','I','n','v','e','n','t','o','r','y' + 0x80,
@@ -110,6 +128,9 @@ const uint8_t messages[] PROGMEM = {
 'P','r','e','s','s',' ','P','l','a','y',' ','O','n',' ','T','a','p','e' + 0x80,
 'p','r','e','s','e','n','t','s' + 0x80,
 'A','S','T','A','R','O','K' + 0x80,
+' ',' ',' ','H','e','r','e',' ','l','i','e','s',' ','V','a','m','p','i','r','i','c','s','.','\n',' ',' ','B','o','r','n',' ','1','8','4','3',' ','-',' ','D','e','c',' ','1','8','8','2' + 0x80,
+' ','R','e','s','t',' ','I','n',' ','P','e','a','c','e',' ','F','i','l','m','o','t','e','.','\n',' ',' ','B','o','r','n',' ','1','8','4','1',' ','-',' ','D','e','c',' ','1','8','7','9' + 0x80,
+' ',' ',' ','P','r','e','s','s',' ','P','l','a','y',' ','O','n',' ','T','a','p','e','\n',' ',' ',' ',' ',' ','D','e','v','e','l','o','p','e','d',' ','2','0','1','9' + 0x80,
 'W','e','l','c','o','m','e',' ','t','r','a','v','e','l','l','e','r',' ','t','o',' ','t','h','e',' ','t','o','w','n' + 0x80,
 'o','f',' ','G','r','i','f','o','r','d','.',' ','T','h','e',' ','e','v','i','l',' ','A','s','t','a','r','o','K' + 0x80,
 'h','a','s',' ','t','u','r','n','e','d',' ','u','s',' ','a','l','l',' ','i','n','t','o',' ','p','u','m','p','k','i','n' + 0x80,
@@ -146,4 +167,19 @@ const uint8_t messages[] PROGMEM = {
 'a',' ','T','h','r','e','e',' ','o','f',' ','a',' ','K','i','n','d','!' + 0x80,
 'T','w','o',' ','P','a','i','r','s','!' + 0x80,
 'a',' ','F','u','l','l',' ','H','o','u','s','e','!' + 0x80,
+'Y','o','u',' ','p','i','c','k','e','d',' ','u','p',' ','s','o','m','e',' ','H','P','!' + 0x80,
+' ',' ',' ',' ','T','h','a','n','k',' ','y','o','u',' ','f','o','r',' ','s','a','v','i','n','g','\n',' ',' ',' ',' ',' ',' ','u','s',' ','f','r','o','m',' ','t','h','e',' ','C','u','r','s','e','!' + 0x80,
+' ','O','v','e','r','w','r','i','t','e',' ','e','x','i','s','t','i','n','g',' ','g','a','m','e','?','\n',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','"','#','%',' ','Y','e','s',' ',' ',' ',' ','"','$','%',' ','N','o' + 0x80,
+' ',' ','S','t','a','r','t',' ','a',' ','n','e','w',' ','g','a','m','e','?','\n',' ',' ',' ',' ',' ','"','#','%',' ','Y','e','s',' ',' ',' ',' ','"','$','%',' ','N','o' + 0x80,
+' ',' ','G','a','m','e',' ','s','t','a','t','e',' ','r','e','s','t','o','r','e','d','!' + 0x80,
+' ',' ',' ',' ','Y','o','u',' ','a','l','r','e','a','d','y',' ','h','a','v','e','\n',' ','o','n','e',' ','o','f',' ','t','h','o','s','e',' ','h','e','l','m','e','t','s','!' + 0x80,
+' ',' ','Y','o','u',' ','a','l','r','e','a','d','y',' ','h','a','v','e',' ','a','s','\n','m','a','n','y',' ','o','f',' ','t','h','e','s','e',' ','p','o','t','i','o','n','s','\n',' ',' ','a','s',' ','y','o','u',' ','c','a','n',' ','c','a','r','r','y',' ','!' + 0x80,
+' ',' ',' ','B','u','y',' ','t','h','i','s',' ','i','t','e','m','?','\n',' ',' ',' ','"','#','%',' ','Y','e','s',' ',' ',' ',' ','"','$','%',' ','N','o' + 0x80,
+'Y','o','u',' ','d','o',' ','n','o','t',' ','h','a','v','e','\n',' ',' ',' ','e','n','o','u','g','h',' ','g','o','l','d','!' + 0x80,
+' ',' ',' ','Y','o','u',' ','a','r','e',' ','c','a','r','r','y','i','n','g','\n',' ','o','n','e',' ','o','f',' ','t','h','o','s','e',' ','r','u','n','e','s','!' + 0x80,
+' ',' ','B','u','y',' ','t','h','i','s',' ','r','u','n','e','?','\n',' ',' ','"','#','%',' ','Y','e','s',' ',' ',' ',' ','"','$','%',' ','N','o' + 0x80,
+' ','Y','o','u',' ','d','o',' ','n','o','t',' ','h','a','v','e','\n',' ',' ',' ',' ','e','n','o','u','g','h',' ','S','P','!' + 0x80,
+' ',' ',' ',' ',' ',' ',' ',' ','A',' ','m','o','n','s','t','e','r',' ','a','t','t','a','c','k','s',' ','y','o','u','!' + 0x80,
+'T','h','r','o','w',' ','t','h','e',' ','r','u','n','e','s',' ','a','g','a','i','n','!' + 0x80,
+' ',' ','G','a','m','e',' ','s','t','a','t','e',' ','s','a','v','e','d','!' + 0x80,
 };

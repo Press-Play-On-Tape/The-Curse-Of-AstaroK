@@ -362,7 +362,7 @@ void playGame_Render() {
 
   if (playGameVars.message.renderRequired) {
 
-    if (playGameVars.message.message != nullptr || playGameVars.counter == Constants::DialogeDelay_MultiPart) {
+    if (playGameVars.message.message != 0 || playGameVars.counter == Constants::DialogeDelay_MultiPart) {
 
       if (playGameVars.counter == Constants::DialogeDelay_MultiPart) {
 
@@ -378,7 +378,7 @@ void playGame_Render() {
       }
       else {
 
-        drawMessageBox(playGameVars.message.message, playGameVars.message.lines, playGameVars.message.width);
+        drawMessageDialogBox(playGameVars.message.message, playGameVars.message.lines, playGameVars.message.width);
 
       }
 
