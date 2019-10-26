@@ -312,7 +312,7 @@ void playGame_Render() {
 
       case InventoryMode::Enemy:
 
-        font3x6.printMessage(Enemy_Stats_Idx);
+        font3x6.printMessage(Enemy_Title_Idx);
 
         switch (playGameVars.viewState) {
 
