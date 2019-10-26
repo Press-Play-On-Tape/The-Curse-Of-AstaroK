@@ -43,7 +43,7 @@ namespace Sounds {
   };
 
   const uint16_t playerHit[] PROGMEM = {
-    NOTE_F3,3, NOTE_D4,4, NOTE_A4,4, NOTE_E3,1, 
+    NOTE_E4,150, NOTE_REST, 15, NOTE_C3,150, NOTE_REST, 15, NOTE_A2,150, 
     TONES_END
   };
 
@@ -53,7 +53,7 @@ namespace Sounds {
   };
 
   const uint16_t enemyHit[] PROGMEM = {
-    NOTE_A3,9, NOTE_D3,10, NOTE_C3,6, NOTE_F3,10, 
+    NOTE_A2,150, NOTE_REST, 15, NOTE_C3,150, NOTE_REST, 15, NOTE_E4,150, 
     TONES_END
   };
 
