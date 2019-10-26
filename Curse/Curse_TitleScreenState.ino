@@ -75,7 +75,8 @@ void titleScreen_Update() {
 
 	// Toggle sound ..
 
-	if ((pressed & B_BUTTON) && (justPressed & UP_BUTTON || justPressed & DOWN_BUTTON)) {
+//	if ((pressed & B_BUTTON) && (justPressed & UP_BUTTON || justPressed & DOWN_BUTTON)) {
+	if (justPressed & B_BUTTON) {
 		titleScreenVars.soundIndex = titleScreen_ToggleSoundSettings();
 		titleScreenVars.soundCounter = 40;
 	}
