@@ -122,17 +122,54 @@ void playGame_Update() {
 
 						auto x = (playGameVars.world.buildingXPos - playGameVars.player.getX());
 
-						if (!playGameVars.gameOver) {
-							
-							if (playGame_CloseTo(playGameVars.world.buildings[0] + x)) {
+						for (uint8_t y = 0; y < 3; y++) {
 
-								playGame_ChangeViewState(ViewState::InShopItems);
+							if (!playGameVars.gameOver) {
+								
+								if (playGame_CloseTo(playGameVars.world.buildings[0] + x)) {
+
+									playGame_ChangeViewState(ViewState::InShopItems);
+
+								}
+
+								if (playGame_CloseTo(playGameVars.world.buildings[1] + x)) {
+
+									playGame_ChangeViewState(ViewState::InShopRunes);
+
+								}
 
 							}
 
-							if (playGame_CloseTo(playGameVars.world.buildings[1] + x)) {
+							if (playGameVars.world.townItems[Constants::HP_Index].getEnabled() && playGame_CloseTo(playGameVars.world.townItems[Constants::HP_Index].getX() + x - 6)) {
 
-								playGame_ChangeViewState(ViewState::InShopRunes);
+								playGame_SaveMessage(Pickup_HP_Idx, 1, 94, Constants::DialogueDelay);
+								playGameVars.world.townItems[Constants::HP_Index].setEnabled(false);
+								playGameVars.player.incHP(arduboy.randomLFSR(5, 15));
+								sound.tones(Sounds::hpOrGPGained);
+
+							}
+
+							if (playGame_CloseTo(Constants::Tombstone_Locations[y] + x - 6)) {
+
+								playGame_SaveMessage(Tombstone_Inscription_00_Idx + y, 2, 94, Constants::DialogueDelay);
+
+							}
+
+							if (playGame_CloseTo(Constants::NPC_Locations[y] + x)) {
+
+								if (playGameVars.gameOver) {
+									playGame_SaveMessage(Thank_You_Idx, 2, 104, Constants::DialogueDelay);
+								}
+								else {
+									playGame_SaveMessage_MultiPart(pgm_read_byte(&multiPart_ArrayIndex[y]), 2, pgm_read_byte(&multiPart_LinesOverall[y]));
+								}
+
+							}
+
+							if (playGame_CloseTo(Constants::SavingPost_Location + x)) {
+								
+								playGameVars.showSaveDialogue = true;
+								playGameVars.counter = 0;
 
 							}
 
@@ -154,21 +191,21 @@ void playGame_Update() {
 
 
 				// Tombstones or NPC ?
-
+				/*
 				if (justPressed & A_BUTTON) {
 
 					auto x = (playGameVars.world.buildingXPos - playGameVars.player.getX());
 
+					if (playGameVars.world.townItems[Constants::HP_Index].getEnabled() && playGame_CloseTo(playGameVars.world.townItems[Constants::HP_Index].getX() + x - 6)) {
+
+						playGame_SaveMessage(Pickup_HP_Idx, 1, 94, Constants::DialogueDelay);
+						playGameVars.world.townItems[Constants::HP_Index].setEnabled(false);
+						playGameVars.player.incHP(arduboy.randomLFSR(5, 15));
+						sound.tones(Sounds::hpOrGPGained);
+
+					}
+
 					for (uint8_t y = 0; y < 3; y++) {
-
-						if (playGameVars.world.townItems[Constants::HP_Index].getEnabled() && playGame_CloseTo(playGameVars.world.townItems[Constants::HP_Index].getX() + x - 6)) {
-
-							playGame_SaveMessage(Pickup_HP_Idx, 1, 94, Constants::DialogueDelay);
-							playGameVars.world.townItems[Constants::HP_Index].setEnabled(false);
-							playGameVars.player.incHP(arduboy.randomLFSR(5, 15));
-							sound.tones(Sounds::hpOrGPGained);
-
-						}
 
 						if (playGame_CloseTo(Constants::Tombstone_Locations[y] + x - 6)) {
 
@@ -187,17 +224,18 @@ void playGame_Update() {
 
 						}
 
-						if (playGame_CloseTo(Constants::SavingPost_Location + x)) {
-							
-							playGameVars.showSaveDialogue = true;
-							playGameVars.counter = 0;
+					}
 
-						}
+					if (playGame_CloseTo(Constants::SavingPost_Location + x)) {
+						
+						playGameVars.showSaveDialogue = true;
+						playGameVars.counter = 0;
 
 					}
 
 				}
-			
+				*/
+							
 			}
 			else {
 
