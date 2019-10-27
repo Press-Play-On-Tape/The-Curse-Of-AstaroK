@@ -166,10 +166,7 @@ void playGame_Update() {
 							playGame_SaveMessage(Pickup_HP_Idx, 1, 94, Constants::DialogueDelay);
 							playGameVars.world.townItems[Constants::HP_Index].setEnabled(false);
 							playGameVars.player.incHP(arduboy.randomLFSR(5, 15));
-
-							#ifdef SOUNDS_ENABLED
 							sound.tones(Sounds::hpOrGPGained);
-							#endif
 
 						}
 
@@ -383,10 +380,7 @@ void playGame_Update() {
 
 				PlayerItem playerItem;
 				memcpy_P(&playerItem, &Player_Items[(playGameVars.itemIdx * 4)], 4);
-
-        #ifdef SOUNDS_ENABLED
 				sound.tones(Sounds::purchase);
-				#endif
 
 				switch (playerItem.itemType) {
 
@@ -488,11 +482,7 @@ void playGame_Update() {
 			playGameVars.message.renderRequired = true;
 
 			if (justPressed & A_BUTTON) {
-
-        #ifdef SOUNDS_ENABLED
 				sound.tones(Sounds::purchase);
-				#endif
-
 				uint8_t sp = pgm_read_byte(&RuneCombinations[(playGameVars.runeIdx * Constants::RuneCombinations_RecordLength) + Constants::RuneCombinations_Price]);
 
 				playGameVars.player.incRuneCombination(static_cast<RuneCombinationType_Purchased>(playGameVars.runeIdx));
@@ -596,22 +586,14 @@ void playGame_Update() {
 
 					case Constants::DialogueDelay_Fight_Damage_Apply:
 						if (playGameVars.invert > 1)	{
-
-			        #ifdef SOUNDS_ENABLED
 							sound.tones(Sounds::playerHit);
-							#endif
-
 							arduboy.invert(playGameVars.invert % 2);
 							if (arduboy.everyXFrames(4)) playGameVars.invert--;
 						}
 						else {
 
 							if (playGameVars.enemy.getHP() == 0) {
-
-								#ifdef SOUNDS_ENABLED
 								sound.tones(Sounds::enemyDead);
-								#endif
-								
 								playGame_ChangeViewState(ViewState::InDungeon_EnemyDead);
 								LevelData levelData;
 								memcpy_P(&levelData, &Levels[(playGameVars.world.dungeon - 1) * Constants::LevelData_RecordSize], Constants::LevelData_RecordSize);
@@ -678,11 +660,7 @@ void playGame_Update() {
 						playGameVars.message.renderRequired = true;
 						if (justPressed & A_BUTTON) {
 							if (playGameVars.player.getHP() == 0) {
-								
-								#ifdef SOUNDS_ENABLED
 								sound.tones(Sounds::playerDead);
-								#endif
-
 								playGame_ChangeViewState(ViewState::InDungeon_PlayerDead);
 							}
 							else {
@@ -706,10 +684,7 @@ void playGame_Update() {
 
 								if (playGameVars.reroll == 0) {
 
-					        #ifdef SOUNDS_ENABLED
 									sound.tones(Sounds::cast);
-									#endif
-
 									playGameVars.player.setRecast();
 									playGameVars.runes.startSpinning();
 									playGameVars.reroll++;
@@ -738,11 +713,7 @@ void playGame_Update() {
 									else {
 
 										if (playGameVars.runes.anyRotatingOrRerolling()) {
-
-							        #ifdef SOUNDS_ENABLED
 											sound.tones(Sounds::cast);
-											#endif
-
 											for (uint8_t x = 0; x < 5; x++) {
 												if (playGameVars.runes.getRune(x).getReroll()) playGameVars.runes.getRune(x).startSpinning();
 											}
@@ -768,11 +739,7 @@ void playGame_Update() {
 								if (justPressed & UP_BUTTON) { 
 									
 									if (playGameVars.player.getX() >= 0 && playGameVars.player.getX() <= 58) {
-
-						        #ifdef SOUNDS_ENABLED
 										sound.tones(Sounds::touch);
-										#endif
-
 										uint8_t i = (playGameVars.player.getX() + 7) / 13;
 										playGameVars.runes.getRune(i).alternateReroll();
 										playGameVars.player.setJumping(true);
@@ -873,22 +840,14 @@ void playGame_Update() {
 
 					case Constants::DialogueDelay_Enemy_Damage_Apply:
 						if (playGameVars.invert > 1)	{
-
-			        #ifdef SOUNDS_ENABLED
 							sound.tones(Sounds::enemyHit);
-							#endif
-
 							arduboy.invert(playGameVars.invert % 2);
 							if (arduboy.everyXFrames(4)) playGameVars.invert--;
 						}
 						else {
 
 							if (playGameVars.player.getHP() == 0) {
-																
-								#ifdef SOUNDS_ENABLED
 								sound.tones(Sounds::playerDead);
-								#endif
-
 								playGame_ChangeViewState(ViewState::InDungeon_PlayerDead);
 							}
 							else {
@@ -1039,10 +998,7 @@ void playGame_Update() {
 						playGameVars.message.victorySP = playGameVars.victorySP;
 						playGameVars.victoryGP = 0;
 						playGameVars.counter = Constants::DialogueDelay;
-
-						#ifdef SOUNDS_ENABLED
 						sound.tones(Sounds::hpOrGPGained);
-						#endif
 
 					}
 

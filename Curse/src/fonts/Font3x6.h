@@ -9,7 +9,7 @@ class Font3x6 {
 
     Font3x6(uint8_t lineHeight = 9);   
 
-    void Font3x6::print(char c);
+    void print(char c);
     void print(char *str);
     void print(const __FlashStringHelper *);
     void PrintMessage(uint8_t idx);

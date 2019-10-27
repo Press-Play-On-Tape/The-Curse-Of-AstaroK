@@ -23,14 +23,11 @@ void playGame_ChangeViewState(const ViewState viewState) {
 			case ViewState::InTown:
 				playGameVars.world.dungeon = 1;
 				fadeInEffect.reset(2);
-
-				#ifdef SOUNDS_ENABLED
 				sound.tones(Sounds::main);
-				#endif
-
 				break;
 
 			case ViewState::InDungeon_Entry:
+				sound.noTone();
 				fadeInEffect.reset(2);
 				break;
 

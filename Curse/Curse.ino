@@ -1,8 +1,6 @@
 // 542 bytes
 #define SPLASH_SCREEN
 
-#define SOUNDS_ENABLED
-
 #include "src/utils/Arduboy2Ext.h"
 #include "src/entities/Entities.h"
 #include "src/fonts/Font3x6.h"
@@ -15,10 +13,8 @@
 #include "src/utils/FlashStringHelper.h"
 #include "src/ardBitmap/ArdBitmap.h"
 
-#ifdef SOUNDS_ENABLED
 #include <ArduboyTones.h>
 #include "src/sounds/Sounds.h"
-#endif
 
 #ifndef DEBUG
 ARDUBOY_NO_USB
@@ -29,9 +25,7 @@ Arduboy2Ext arduboy;
 ArdBitmap<WIDTH, HEIGHT> ardBitmap;
 Font3x6 font3x6;
 
-#ifdef SOUNDS_ENABLED
 ArduboyTones sound(arduboy.audio.enabled);
-#endif
 
 #ifdef SPLASH_SCREEN
 GameStateType gameState = GameStateType::SplashScreen_Activate; 
@@ -48,10 +42,7 @@ void setup() {
 
 	arduboy.boot();
 	arduboy.setFrameRate(40);
-
-	#ifdef SOUNDS_ENABLED
 	arduboy.audio.begin();
-	#endif
 
 }
 
