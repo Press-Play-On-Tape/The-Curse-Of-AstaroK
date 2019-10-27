@@ -866,6 +866,7 @@ void playGame_Update() {
 						playGameVars.message.renderRequired = true;
 						if (justPressed & A_BUTTON) {
 							if (playGameVars.dmgInflictedOnPlayer > 0) {
+								sound.tones(Sounds::enemyHit);
 								playGameVars.counter = Constants::DialogueDelay_Enemy_Damage_Apply;
 								playGameVars.invert = 8;
 								playGameVars.player.inflictDMG(playGameVars.dmgInflictedOnPlayer);
@@ -878,7 +879,6 @@ void playGame_Update() {
 
 					case Constants::DialogueDelay_Enemy_Damage_Apply:
 						if (playGameVars.invert > 1)	{
-							sound.tones(Sounds::enemyHit);
 							arduboy.invert(playGameVars.invert % 2);
 							if (arduboy.everyXFrames(4)) playGameVars.invert--;
 						}

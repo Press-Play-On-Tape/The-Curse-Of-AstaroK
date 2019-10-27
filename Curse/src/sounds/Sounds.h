@@ -119,7 +119,7 @@ namespace Sounds {
   };
 
   const uint16_t hpOrGPGained[] PROGMEM = {
-    NOTE_A3,9, NOTE_D3,10, NOTE_C3,6, NOTE_F3,10, 
+    NOTE_A5,25, NOTE_E5,25, NOTE_C5,25, NOTE_A6,25, 
     TONES_END
   };
 
