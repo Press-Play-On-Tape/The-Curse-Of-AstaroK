@@ -1,7 +1,5 @@
 #pragma once
 
-#define SPLASH_SCREEN
-
 // Imported 89 messages from "messages.h"
 
 constexpr uint8_t Inventory_Title_Idx = 0;
@@ -92,11 +90,6 @@ constexpr uint8_t Monster_Attack_Idx = 84;
 constexpr uint8_t Throw_Again_Idx = 85;
 constexpr uint8_t Game_Saved_Idx = 86;
 
-#ifndef SPLASH_SCREEN
-constexpr uint8_t Press_Play_Idx = 87;
-constexpr uint8_t Presents_Idx = 88;
-#endif
-
 const uint8_t messages[] PROGMEM = {
 ' ','I','n','v','e','n','t','o','r','y' + 0x80,
 ' ','x',' ' + 0x80,
@@ -185,8 +178,4 @@ const uint8_t messages[] PROGMEM = {
 ' ',' ',' ',' ',' ',' ',' ',' ','A',' ','m','o','n','s','t','e','r',' ','a','t','t','a','c','k','s',' ','y','o','u','!' + 0x80,
 'T','h','r','o','w',' ','t','h','e',' ','r','u','n','e','s',' ','a','g','a','i','n','!' + 0x80,
 ' ',' ','G','a','m','e',' ','s','t','a','t','e',' ','s','a','v','e','d','!' + 0x80,
-#ifndef SPLASH_SCREEN
-'P','r','e','s','s',' ','P','l','a','y',' ','O','n',' ','T','a','p','e' + 0x80,
-'p','r','e','s','e','n','t','s' + 0x80,
-#endif
 };

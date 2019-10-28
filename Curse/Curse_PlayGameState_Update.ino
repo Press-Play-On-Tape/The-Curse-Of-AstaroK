@@ -697,18 +697,18 @@ void playGame_Update() {
 								}
 								else {
 
-// Firee Blaze
-// playGameVars.runes.getRune(0).setValue(1);
-// playGameVars.runes.getRune(1).setValue(1);
-// playGameVars.runes.getRune(2).setValue(3);
-// playGameVars.runes.getRune(3).setValue(4);
+								// Firee Blaze
+								// playGameVars.runes.getRune(0).setValue(1);
+								// playGameVars.runes.getRune(1).setValue(1);
+								// playGameVars.runes.getRune(2).setValue(3);
+								// playGameVars.runes.getRune(3).setValue(4);
 
-// Venom Mist
-// playGameVars.runes.getRune(0).setValue(0);
-// playGameVars.runes.getRune(1).setValue(1);
-// playGameVars.runes.getRune(2).setValue(2);
-// playGameVars.runes.getRune(3).setValue(3);
-																							
+								// Venom Mist
+								// playGameVars.runes.getRune(0).setValue(0);
+								// playGameVars.runes.getRune(1).setValue(1);
+								// playGameVars.runes.getRune(2).setValue(2);
+								// playGameVars.runes.getRune(3).setValue(3);
+																															
 									MatchedRuneCombination matchedRuneCombination;
 									playGameVars.runes.checkRuneCombination(playGameVars.player, matchedRuneCombination);
 	
@@ -760,17 +760,17 @@ void playGame_Update() {
 
 							if (!playGameVars.runes.anyRotatingOrRerolling() && playGameVars.reroll == playGameVars.numberOfRecasts) {
 
-// Firee Blaze
-// playGameVars.runes.getRune(0).setValue(1);
-// playGameVars.runes.getRune(1).setValue(1);
-// playGameVars.runes.getRune(2).setValue(3);
-// playGameVars.runes.getRune(3).setValue(4);
+							// Firee Blaze
+							// playGameVars.runes.getRune(0).setValue(1);
+							// playGameVars.runes.getRune(1).setValue(1);
+							// playGameVars.runes.getRune(2).setValue(3);
+							// playGameVars.runes.getRune(3).setValue(4);
 
-// Venom Mist
-// playGameVars.runes.getRune(0).setValue(0);
-// playGameVars.runes.getRune(1).setValue(1);
-// playGameVars.runes.getRune(2).setValue(2);
-// playGameVars.runes.getRune(3).setValue(3);
+							// Venom Mist
+							// playGameVars.runes.getRune(0).setValue(0);
+							// playGameVars.runes.getRune(1).setValue(1);
+							// playGameVars.runes.getRune(2).setValue(2);
+							// playGameVars.runes.getRune(3).setValue(3);
 
 
 								playGameVars.runes.checkRuneCombination(playGameVars.player, playGameVars.matchedRuneCombination);
@@ -985,6 +985,8 @@ void playGame_Update() {
 
 					if (justPressed & B_BUTTON) { playGameVars.inventory.show = true; }
 
+					if (justPressed & UP_BUTTON) { playGameVars.player.setJumping(true); }
+					
 					if (playGameVars.player.getX() >= 128) {
 
 						playGameVars.world.dungeon++;
