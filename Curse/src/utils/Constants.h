@@ -122,54 +122,6 @@ namespace Constants {
 
   constexpr int16_t SavingPost_Location = -110;
 }
-
-const uint8_t Tombstone_Inscription_00[] PROGMEM = "   Here lies Vampirics.\n  Born 1843 - Dec 1882";
-const uint8_t Tombstone_Inscription_01[] PROGMEM = " Rest In Peace Filmote.\n  Born 1841 - Dec 1879";
-const uint8_t Tombstone_Inscription_02[] PROGMEM = "   Press Play On Tape\n     Developed 2019";
-
-const uint8_t * const Tombstone_Inscriptions[] PROGMEM = { 
-  Tombstone_Inscription_00,
-  Tombstone_Inscription_01,
-  Tombstone_Inscription_02,
-};
                                     // 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3
 const uint8_t RandomNames[] PROGMEM = "TARATOMAMOMENOVASOSIKAKIMUNUTUSURESETEPEPOPIPA";
 const uint8_t RandomNames_Count = 23; 
-
-const uint8_t Dialogue_00[] PROGMEM = "Welcome traveller to the town";
-const uint8_t Dialogue_01[] PROGMEM = "of Griford. The evil AstaroK";
-const uint8_t Dialogue_02[] PROGMEM = "has turned us all into pumpkin";
-const uint8_t Dialogue_03[] PROGMEM = "people. Please help us defeat";
-const uint8_t Dialogue_04[] PROGMEM = "this crazy wizard!";
-const uint8_t Dialogue_05[] PROGMEM = "Be sure to equip yourself";
-const uint8_t Dialogue_06[] PROGMEM = "properly. You can press \"$% to";
-const uint8_t Dialogue_07[] PROGMEM = "access your inventory and to";
-const uint8_t Dialogue_08[] PROGMEM = "view information about you or";
-const uint8_t Dialogue_09[] PROGMEM = "your enemies.";
-const uint8_t Dialogue_10[] PROGMEM = "In combat, cast runes to score";
-const uint8_t Dialogue_11[] PROGMEM = "'poker' hands. Pressing \"#% will";
-const uint8_t Dialogue_12[] PROGMEM = "cast the runes - jump and";
-const uint8_t Dialogue_13[] PROGMEM = "touch runes to select them";
-const uint8_t Dialogue_14[] PROGMEM = "for recasting. Normally you";
-const uint8_t Dialogue_15[] PROGMEM = "can cast 3 times, but some";
-const uint8_t Dialogue_16[] PROGMEM = "items might give you extra.";
-
-const uint8_t * const Dialogue[] PROGMEM = { 
-  Dialogue_00,
-  Dialogue_01,
-  Dialogue_02,
-  Dialogue_03,
-  Dialogue_04,
-  Dialogue_05,
-  Dialogue_06,
-  Dialogue_07,
-  Dialogue_08,
-  Dialogue_09,
-  Dialogue_10,
-  Dialogue_11,
-  Dialogue_12,
-  Dialogue_13,
-  Dialogue_14,
-  Dialogue_15,
-  Dialogue_16,
-};

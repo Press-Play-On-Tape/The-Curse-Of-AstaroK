@@ -15,64 +15,7 @@ const uint8_t PROGMEM Player_Items[] = {  // Type, Index, Def, GP
   static_cast<uint8_t>(PlayerItemType::Exit), 0, 1, 30,
 };
 
-
-const uint8_t PlayerItems_Caption00[] PROGMEM = "Crystal Helmet";
-const uint8_t PlayerItems_Caption01[] PROGMEM = "High Helmet";
-const uint8_t PlayerItems_Caption02[] PROGMEM = "Round Helmet";
-const uint8_t PlayerItems_Caption03[] PROGMEM = "Fire Potion";
-const uint8_t PlayerItems_Caption04[] PROGMEM = "Health Potion";
-const uint8_t PlayerItems_Caption05[] PROGMEM = "Speed Potion";
-
-const uint8_t * const PlayerItems_Captions[] PROGMEM = { 
-  PlayerItems_Caption00,
-  PlayerItems_Caption01,
-  PlayerItems_Caption02,
-  PlayerItems_Caption03,
-  PlayerItems_Caption04,
-  PlayerItems_Caption05,
-};
-
-
-const uint8_t RuneCombination_Purchased_Caption00[] PROGMEM = "Fire Blaze";
-const uint8_t RuneCombination_Purchased_Caption01[] PROGMEM = "Healing Wind";
-const uint8_t RuneCombination_Purchased_Caption02[] PROGMEM = "Rising Star";
-const uint8_t RuneCombination_Purchased_Caption03[] PROGMEM = "Venom Mist";
-
-const uint8_t * const RuneCombination_Purchased_Captions[] PROGMEM = { 
-  RuneCombination_Purchased_Caption00,
-  RuneCombination_Purchased_Caption01,
-  RuneCombination_Purchased_Caption02,
-  RuneCombination_Purchased_Caption03,
-};
-
 const uint8_t RuneCombination_Purchased_Captions_Length[] = { 102, 110, 106, 102 };
-
-const uint8_t Rune_Effect_Caption00[] PROGMEM = "5 Fire DMG";
-const uint8_t Rune_Effect_Caption01[] PROGMEM = "Heal 20 HP";
-const uint8_t Rune_Effect_Caption02[] PROGMEM = "35 Damage";
-const uint8_t Rune_Effect_Caption03[] PROGMEM = "2 P. DMG";
-
-const uint8_t * const Rune_Effect_Captions[] PROGMEM = { 
-  Rune_Effect_Caption00,
-  Rune_Effect_Caption01,
-  Rune_Effect_Caption02,
-  Rune_Effect_Caption03,
-};
-
-const uint8_t RuneCombination_Standard_51[] PROGMEM = "a Five of a Kind!";
-const uint8_t RuneCombination_Standard_52[] PROGMEM = "a Four of a Kind!";
-const uint8_t RuneCombination_Standard_53[] PROGMEM = "a Three of a Kind!";
-const uint8_t RuneCombination_Standard_54[] PROGMEM = "Two Pairs!";
-const uint8_t RuneCombination_Standard_55[] PROGMEM = "a Full House!";
-
-const uint8_t * const RuneCombination_Standard_Captions[] PROGMEM = { 
-  RuneCombination_Standard_51,
-  RuneCombination_Standard_52,
-  RuneCombination_Standard_53,
-  RuneCombination_Standard_54,
-  RuneCombination_Standard_55,
-};
-
 const uint8_t RuneCombination_Standard_Captions_Length[] = { 112, 112, 118, 92, 101 };
 
 constexpr uint8_t JumpHeight_Count = 20;
@@ -120,7 +63,7 @@ class Player {
     void setHelmetTypeCount(const HelmetType HelmetType, const uint8_t value);
     void setPotionTypeCount(const PotionType potionType, const uint8_t value);
    
-    void render(Arduboy2Ext &arduboy, ArdBitmap<128, 64> &ardBitmap, bool renderGauge);
+    void render(Arduboy2Ext &arduboy, ArdBitmap<128, 64> &ardBitmap, bool inside);
     void incX();
     void decX();
     void incRuneCombination(const RuneCombinationType_Purchased runeCombination);

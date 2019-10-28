@@ -306,7 +306,7 @@ void Player::updateFrame(Arduboy2Ext &arduboy, uint8_t everyFrame, uint8_t frame
 }
 
 
-void Player::render(Arduboy2Ext &arduboy, ArdBitmap<128, 64> &ardBitmap, bool renderGauge) {
+void Player::render(Arduboy2Ext &arduboy, ArdBitmap<128, 64> &ardBitmap, bool inside) {
 
   uint8_t yPos = (this->jumping ? JumpHeight[this->jumpIndex] : this->y);
 
@@ -380,13 +380,18 @@ void Player::render(Arduboy2Ext &arduboy, ArdBitmap<128, 64> &ardBitmap, bool re
   // Render jumping puft ..
 
   if (this->jumping) {
-    SpritesB::drawSelfMasked(this->x + 2, 45, Images::Jump_Effect, 0);
+    if (inside) {
+      SpritesB::drawSelfMasked(this->x + 2, 46, Images::Jump_Effect,0);
+    }
+    else {
+      SpritesB::drawErase(this->x + 2, 46, Images::Jump_Effect, 0);
+    }
   }
 
 
   // Render HP Gauge ..
 
-  if (renderGauge) {
+  if (inside) {
 
     SpritesB::drawExternalMask(0, 0, Images::hpGauge, Images::hpGauge_Mask, 0, 0);
 
