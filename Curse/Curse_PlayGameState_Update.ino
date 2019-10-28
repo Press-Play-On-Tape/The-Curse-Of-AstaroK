@@ -1126,6 +1126,22 @@ bool playGame_ProcessAorUpButton() {
 
 	auto x = (playGameVars.world.buildingXPos - playGameVars.player.getX());
 
+	if (!playGameVars.gameOver) {
+		
+		if (playGame_CloseTo(playGameVars.world.buildings[0] + x)) {
+
+			playGame_ChangeViewState(ViewState::InShopItems);
+
+		}
+
+		if (playGame_CloseTo(playGameVars.world.buildings[1] + x)) {
+
+			playGame_ChangeViewState(ViewState::InShopRunes);
+
+		}
+
+	}
+
 	if (playGameVars.world.townItems[Constants::HP_Index].getEnabled() && playGame_CloseTo(playGameVars.world.townItems[Constants::HP_Index].getX() + x - 6)) {
 
 		playGame_SaveMessage(Pickup_HP_Idx, 1, 94, Constants::DialogueDelay);
