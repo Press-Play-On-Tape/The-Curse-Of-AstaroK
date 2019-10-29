@@ -138,7 +138,7 @@ with open(os.path.dirname(filename)+os.sep+'messages-constants.h','w') as file:
 
   file.write('\nconst uint8_t keywords[] PROGMEM = {\n')
   for i in range (len(listKeywordsEsc)):
-    file.write('{} + 0x80\n'.format(listKeywordsEsc[i]))
+    file.write('{} + 0x80,\n'.format(listKeywordsEsc[i]))
   file.write('};\n\n')
 
   file.write('\nconst uint8_t messages[] PROGMEM = {\n')
