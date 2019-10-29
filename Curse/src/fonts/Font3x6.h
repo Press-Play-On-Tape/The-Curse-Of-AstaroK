@@ -11,7 +11,7 @@ class Font3x6 {
 
     void print(char c);
     void print(char *str);
-    void print(const __FlashStringHelper *);
+    void print(const __FlashStringHelper *); // For using F() Macro
     void PrintMessage(uint8_t idx);
     void printMessage(uint8_t idx, const uint8_t *messagesArray);
     void printNumber(uint8_t n);

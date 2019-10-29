@@ -105,13 +105,13 @@ const uint8_t PROGMEM font_images[] = {
   0x03, 0x3c, 0x03,
   0x31, 0x2d, 0x23,  // Z
 
-  0x00, 0x00, 0x00,  // [
-  0x00, 0x00, 0x00,  // 
-  0x00, 0x00, 0x00,  // ]
-  0x00, 0x00, 0x00,  // ^
-  
-  0x00, 0x00, 0x00,  // _
-  0x00, 0x00, 0x00,  // `
+  //0x00, 0x00, 0x00,  // [
+  //0x00, 0x00, 0x00,  // 
+  //0x00, 0x00, 0x00,  // ]
+  //0x00, 0x00, 0x00,  // ^
+  //
+  //0x00, 0x00, 0x00,  // _
+  //0x00, 0x00, 0x00,  // `
 
   0x18, 0x24, 0x3C, // a
   0x3E, 0x24, 0x18,
@@ -162,9 +162,9 @@ void Font3x6::print(char *str)
   while (*str) write(*str++);
 }
 
-void Font3x6::print(const __FlashStringHelper *ifsh)
+void Font3x6::print(const __FlashStringHelper *str)
 {
-  PGM_P p = reinterpret_cast<PGM_P>(ifsh);
+  const uint8_t *p = reinterpret_cast<const uint8_t *>(str);
   while (1) {
     unsigned char c = pgm_read_byte(p++);
     if (c == 0) break;
@@ -246,6 +246,9 @@ void Font3x6::write(uint8_t c) {
 void Font3x6::printChar(const char c, const int8_t x, int8_t y) {
 
   int8_t idx = c - CHAR_SPACE;
+  if (c >= CHAR_LETTER_A_LOWER) {
+    idx -= CHAR_LETTER_A_LOWER - CHAR_LETTER_Z - 1;
+  }
   ++y;
   if (_textColor == WHITE) {
     SpritesB::drawSelfMasked(x, y, font_images, idx);
