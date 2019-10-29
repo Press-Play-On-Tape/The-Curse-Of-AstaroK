@@ -26,7 +26,7 @@ def GetMessageText(s):
   e = s.rfind('"')
 
   text = s[b + 1:e].strip().replace('\\n', ' ')
-  for ch in ['\\','`','*','_','{','}','[',']','(',')','>','#','+','-','.','!','$','\'',':','.','"','?']:
+  for ch in ['\\','`','*','_','{','}','[',']','(',')','>','#','+','-','.','$','\'',':','.','"','?']:
     if ch in text:
         text = text.replace(ch,' ')
 
@@ -60,15 +60,12 @@ def GetMessage(s, listKeywordsEsc):
           msg = msg + "'{}',".format(s[i])
     if msg != '':
       #msg+='0x00,'
-      msg = msg[0:-1] + ' + 0x80,'
-
-
+      msg = msg[0:-1] + ', 0x80,'
 
       # check for keywords. 
       for x in range(0, len(listKeywordsEsc)):
         keyword = listKeywordsEsc[x]
         msg = msg.replace(keyword, str(x + 129))
-        msg = msg.replace( str(x + 129) + ' + 0x80', str(x + 129))
 
 
   return msg
@@ -88,8 +85,7 @@ with open(filename,"r") as file:
 # work out the keywords.
 keywords = dict()
 keywords['nventory'] = 2
-keywords['of a Kind'] = 2
-keywords['kill'] = 2
+keywords[' of a Kind!'] = 2
 
 for line in lines:
   line = StripRemark(line)
@@ -104,6 +100,11 @@ for line in lines:
         keywords[word] += 1
       else:
         keywords[word] = 1
+
+keywords['kill'] = 2
+keywords['ress'] = 2
+keywords['     '] = 2
+keywords['   '] = 2
 
 
 # remove singles and short words ..
@@ -138,7 +139,7 @@ with open(os.path.dirname(filename)+os.sep+'messages-constants.h','w') as file:
 
   file.write('\nconst uint8_t keywords[] PROGMEM = {\n')
   for i in range (len(listKeywordsEsc)):
-    file.write('{} + 0x80,\n'.format(listKeywordsEsc[i]))
+    file.write('{}, 0x80, // {}\n'.format(listKeywordsEsc[i], str(i + 129)))
   file.write('};\n\n')
 
   file.write('\nconst uint8_t messages[] PROGMEM = {\n')

@@ -185,20 +185,22 @@ void Font3x6::printMessage(uint8_t idx, const uint8_t *messagesArray) {
     while(1) {  
       uint8_t c = pgm_read_byte(p) ;
       ++p;
-      if (c >= 0x80) break;
+      if (c == 0x80) break;
     }
     --idx;
   }
   while (1) {
     uint8_t c = pgm_read_byte(p);
-    if (c >= 0x80) {
-      //this->printMessage( (c && 0x7f) - 1, keywords);
+    if (c == 0x80) {
+      break;
+    } 
+    else if (c >= 0x80) {
+      this->printMessage( (c & 0x7f) - 1, keywords);
     }
     else  {
       write(c);
     }
     ++p;
-    if (c >= 0x80) break;
   }
 }
 
