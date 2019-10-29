@@ -17,14 +17,14 @@ const uint8_t Points_Damage[] PROGMEM = " pts of damage.";
 const uint8_t Plus_Extra[] PROGMEM = "Plus an extra ";
 const uint8_t You_Regained[] PROGMEM = "You regained ";
 const uint8_t Health_Points[] PROGMEM = " health points.";
-const uint8_t Aztarok_Stole[] PROGMEM = "  Aztarok stole ";
+const uint8_t Aztarok_Stole[] PROGMEM = "  AstaroK stole ";
 const uint8_t Hp_Points[] PROGMEM = " hp points.";
 const uint8_t Attacks[] PROGMEM = " attacks, ";
 const uint8_t Damage_Points[] PROGMEM = " damage pts.";
 const uint8_t Gelly_Theft[] PROGMEM = "The Gelatinous Cube stole a\n   ";
 const uint8_t Rune[] PROGMEM = " rune";
 const uint8_t From_You[] PROGMEM = " from you!";
-const uint8_t You_Win[] PROGMEM = " You killed Astarok and freed\nthe villagers from the curse!";
+const uint8_t You_Win[] PROGMEM = " You killed AstaroK and freed\nthe villagers from the curse!";
 const uint8_t You_Scored[] PROGMEM = "You scored ";
 const uint8_t Gold_Coins[] PROGMEM = " gold coins.";
 const uint8_t Skill_Points[] PROGMEM = " skill points.";
@@ -33,10 +33,6 @@ const uint8_t GP[] PROGMEM = "GP";
 const uint8_t SP[] PROGMEM = "SP";
 const uint8_t You_Cast[] PROGMEM = "You cast ";
 const uint8_t None[] PROGMEM = "None !";
-
-//from Curse_TitleScreenState.ino
-const uint8_t Press_Play[] PROGMEM = "Press Play On Tape";
-const uint8_t Presents[] PROGMEM = "presents";
 
 //from Enemy.cpp
 const uint8_t Astarok_Name[] PROGMEM = "ASTAROK";
