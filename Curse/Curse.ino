@@ -1,6 +1,3 @@
-// 542 bytes
-#define SPLASH_SCREEN
-
 #include "src/utils/Arduboy2Ext.h"
 #include "src/entities/Entities.h"
 #include "src/fonts/Font3x6.h"
@@ -10,12 +7,12 @@
 #include "src/utils/Enums.h"
 #include "src/utils/Structs.h"
 #include "src/utils/FadeEffects.h"
-#include "src/utils/FlashStringHelper.h"
 #include "src/ardBitmap/ArdBitmap.h"
 
 #include <ArduboyTones.h>
 #include "src/sounds/Sounds.h"
 
+#define SOUND_BUTTONS
 #ifndef DEBUG
 ARDUBOY_NO_USB
 #endif
@@ -27,11 +24,7 @@ Font3x6 font3x6;
 
 ArduboyTones sound(arduboy.audio.enabled);
 
-#ifdef SPLASH_SCREEN
 GameStateType gameState = GameStateType::SplashScreen_Activate; 
-#else
-GameStateType gameState = GameStateType::TitleScreen_Activate; 
-#endif
 
 SplashScreenStateVars splashScreenVars;
 TitleScreenStateVars titleScreenVars;
@@ -41,6 +34,9 @@ GameOverStateVars gameOverVars;
 void setup() {
 
 	arduboy.boot();
+	#ifndef SOUND_BUTTONS
+	arduboy.systemButtons();
+	#endif
 	arduboy.setFrameRate(40);
 	arduboy.audio.begin();
 
@@ -53,19 +49,15 @@ void loop() {
 
 	switch (gameState) {
 
-		#ifdef SPLASH_SCREEN
+		case GameStateType::SplashScreen_Activate:
+			splashScreen_Activate();
+			gameState = GameStateType::SplashScreen;
+			[[fallthrough]];
 
-			case GameStateType::SplashScreen_Activate:
-				splashScreen_Activate();
-				gameState = GameStateType::SplashScreen;
-				[[fallthrough]];
-
-			case GameStateType::SplashScreen:
-				splashScreen_Update();
-				splashScreen_Render();
-				break;
-
-		#endif
+		case GameStateType::SplashScreen:
+			splashScreen_Update();
+			splashScreen_Render();
+			break;
 
 		case GameStateType::TitleScreen_Activate:
 			titleScreen_Activate();

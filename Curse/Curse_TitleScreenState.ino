@@ -45,38 +45,24 @@ void titleScreen_Update() {
 
 	// Update counter ..
 
-	#ifndef SPLASH_SCREEN
-	if (titleScreenVars.counter < 140) titleScreenVars.counter++;
-	#else
 	if (titleScreenVars.counter < 32) titleScreenVars.counter++;
-	#endif
 
 
 	// Handle other input ..
 
-	#ifndef SPLASH_SCREEN
-	if (justPressed & A_BUTTON) {
-		if (titleScreenVars.counter <= 70) {
-			titleScreenVars.counter = 71;
-		}
-		else {
-			gameState = GameStateType::PlayGame_Activate; 
-		}
-	}
-	#else
 	if (justPressed & A_BUTTON) {
 		gameState = GameStateType::PlayGame_Activate; 
 	}
-	#endif
 
 
 	// Toggle sound ..
 
-//	if ((pressed & B_BUTTON) && (justPressed & UP_BUTTON || justPressed & DOWN_BUTTON)) {
+	#ifdef SOUND_BUTTONS
 	if (justPressed & B_BUTTON) {
 		titleScreenVars.soundIndex = titleScreen_ToggleSoundSettings();
 		titleScreenVars.soundCounter = 40;
 	}
+	#endif
 
 }
 
@@ -86,32 +72,12 @@ void titleScreen_Update() {
 //
 void titleScreen_Render() {
 
-	#ifndef SPLASH_SCREEN
+	ardBitmap.drawCompressed(0, 6, Images::TitleScreen, WHITE, MIRROR_NONE);
+	if (titleScreenVars.counter == 32) ardBitmap.drawCompressed(48, 53, Images::TitleScreen_PressA, WHITE, MIRROR_NONE);
 
-	switch (titleScreenVars.counter) {
-
-		case 0 ... 70:
-			font3x6.setCursor(32, 21);
-			font3x6.printMessage(Press_Play_Idx);
-			font3x6.setCursor(49, 33);
-			font3x6.printMessage(Presents_Idx);
-			break;
-
-		case 71 ... 140:
-			ardBitmap.drawCompressed(0, 6, Images::TitleScreen, WHITE, MIRROR_NONE);
-			if (titleScreenVars.counter == 140) ardBitmap.drawCompressed(48, 53, Images::TitleScreen_PressA, WHITE, MIRROR_NONE);
-			break;
-
-	}
-
-	#else
-
-		ardBitmap.drawCompressed(0, 6, Images::TitleScreen, WHITE, MIRROR_NONE);
-		if (titleScreenVars.counter == 32) ardBitmap.drawCompressed(48, 53, Images::TitleScreen_PressA, WHITE, MIRROR_NONE);
-		
-	#endif
-
+	#ifdef SOUND_BUTTONS
 	if (titleScreenVars.soundCounter > 0) { SpritesB::drawOverwrite(120, 56, Images::Sounds, titleScreenVars.soundIndex); }
+	#endif
 	arduboy.display(true);
 	
 } 

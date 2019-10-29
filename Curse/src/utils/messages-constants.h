@@ -1,7 +1,5 @@
 #pragma once
 
-// Imported 87 messages from "messages.h"
-
 constexpr uint8_t Inventory_Title_Idx = 0;
 constexpr uint8_t Inventory_Quantity_Idx = 1;
 constexpr uint8_t Statistics_Title_Idx = 2;
