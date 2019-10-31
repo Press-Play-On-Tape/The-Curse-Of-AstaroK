@@ -186,7 +186,7 @@ void Font3x6::printMessage(uint8_t idx, const uint8_t *messagesArray, bool eight
       uint8_t c = pgm_read_byte(p) ;
       ++p;
       if (eighty && c == 0x80) break;
-      if (!eighty && (c & 0x80) > 0) break;
+      else if (!eighty && (c & 0x80) > 0) break;
     }
     --idx;
   }

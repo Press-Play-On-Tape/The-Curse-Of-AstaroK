@@ -156,6 +156,7 @@ newKeywords['ar'] = 2
 # newKeywords['op'] = 2
 # newKeywords['am'] = 2
 newKeywords[' do '] = 2
+newKeywords['Th'] = 2
 newKeywords['a '] = 2
 
 listKeywords = [k for k,v in newKeywords.items()]
