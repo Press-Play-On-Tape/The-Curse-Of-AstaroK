@@ -12,7 +12,7 @@
 #include <ArduboyTones.h>
 #include "src/sounds/Sounds.h"
 
-#define SOUND_BUTTONS
+#define _SOUND_BUTTONS
 #ifndef DEBUG
 ARDUBOY_NO_USB
 #endif

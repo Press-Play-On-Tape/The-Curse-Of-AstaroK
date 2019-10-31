@@ -25,7 +25,14 @@ void playGame_Render() {
         ardBitmap.drawCompressed(x + 90, 3, Images::Cloud_02, WHITE, MIRROR_NONE);
       }
 
+      if (mrBlinky < 80) {
 
+        const int8_t xOffset[] = { 0, -1, -2, -2, -1, 0, 1, 2, 2 };
+        SpritesB::drawExternalMask(playGameVars.world.buildingXPos - 155 + 3 + xOffset[(mrBlinky + 64) % 8], mrBlinky, Images::MrBlinky, Images::MrBlinky_Mask, 0, 0);
+        mrBlinky = mrBlinky - 1;
+
+      }
+      
       playGame_RenderTrees(playGameVars.world.buildingXPos);
       playGame_RenderTownItems(RenderPosition::Background);
 
@@ -532,16 +539,6 @@ void playGame_Render() {
 // drawMessageBox(2, 112);
 // font3x6.print(x);
 
-
-
-  if (mrBlinky < 80) {
-
-//    const int8_t xOffset[] = { 0, -1, -2, -2, -1, 0, 1, 2, 2 };
-/* + xOffset[mrBlinky % 8]*/
-    SpritesB::drawExternalMask(playGameVars.world.buildingXPos + Constants::Tombstone_Locations[0] , mrBlinky, Images::MrBlinky, Images::MrBlinky_Mask, 0, 0);
-    mrBlinky = mrBlinky - 2;
-
-  }
 
 
   arduboy.displayWithBackground(timeOfDay);
