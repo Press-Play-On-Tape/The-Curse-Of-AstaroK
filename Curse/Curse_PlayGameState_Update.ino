@@ -1152,12 +1152,18 @@ bool playGame_ProcessAorUpButton() {
 
 	}
 
+	if (playGame_CloseTo(-155 + x - 6)) {
+
+		mrBlinky = 40;
+		return true;
+
+	}
+
 	for (uint8_t y = 0; y < 3; y++) {
 
 		if (playGame_CloseTo(Constants::Tombstone_Locations[y] + x - 6)) {
 
 			playGame_SaveMessage(Tombstone_Inscription_00_Idx + y, 2, 94, Constants::DialogueDelay);
-			if (y == 0) mrBlinky = 58;
 			return true;
 
 		}

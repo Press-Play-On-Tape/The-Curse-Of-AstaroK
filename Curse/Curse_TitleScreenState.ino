@@ -23,7 +23,9 @@ void titleScreen_Update() {
 
 	// Handle sound counter ..
 	
+	#ifdef SOUND_BUTTONS
 	if (titleScreenVars.soundCounter > 0) titleScreenVars.soundCounter--;
+	#endif
 
 
 	// Restart ?
