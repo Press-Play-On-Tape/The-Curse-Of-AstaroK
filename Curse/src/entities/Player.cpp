@@ -258,7 +258,8 @@ void Player::setItemCount(const uint8_t index, const uint8_t value) {
 
 void Player::setRecast() {
   
-  this->recast = 16;
+// Double cast  this->recast = 16;
+  this->recast = 12;
   
 }
 
@@ -313,7 +314,7 @@ void Player::render(Arduboy2Ext &arduboy, ArdBitmap<128, 64> &ardBitmap, bool in
   {
     uint8_t mirror = (this->playerDirection == PlayerDirection::IdleRight || this->playerDirection == PlayerDirection::WalkingRight) ? MIRROR_HORIZONTAL : MIRROR_NONE;
 
-    if (this->recast == 0 || (this->recast % 8 < 4)) {
+    if (this->recast == 0){//} || (this->recast % 8 < 4)) {   Double cast 
 
       uint8_t frameOffset = 0;
 
