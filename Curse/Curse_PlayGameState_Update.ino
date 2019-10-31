@@ -226,7 +226,7 @@ void playGame_Update() {
 						if (justPressed & DOWN_BUTTON) {
 
 							uint8_t c;
-							EEPROM.get(100, c);
+							EEPROM.get(101, c);
 							if (playGameVars.inventory.saveGameIndex == 0 || (c == 'c' && playGameVars.inventory.saveGameIndex < 2)) playGameVars.inventory.saveGameIndex++;
 
 						}
@@ -242,7 +242,7 @@ void playGame_Update() {
 								case 0:
 									{
 										uint8_t c;
-										EEPROM.get(100, c);
+										EEPROM.get(101, c);
 
 										if (c == 'c') {
 
@@ -260,7 +260,7 @@ void playGame_Update() {
 									break;
 
 								case 2:
-									EEPROM.get(100, playGameVars);
+									EEPROM.get(101, playGameVars);
 									playGame_SaveMessage(Game_Restored_Idx, 1, 100, Constants::DialogueDelay);
 
 							}
@@ -1111,7 +1111,7 @@ void playGame_SaveGame() {
 
 	playGameVars.showSaveDialogue = false;
 	playGameVars.hasBeenSaved = 'c';
-	EEPROM.put(100, playGameVars);
+	EEPROM.put(101, playGameVars);
 	playGame_SaveMessage(Game_Saved_Idx, 1, 88, Constants::DialogueDelay);
 
 };

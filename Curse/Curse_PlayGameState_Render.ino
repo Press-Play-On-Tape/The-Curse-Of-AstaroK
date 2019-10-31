@@ -347,7 +347,7 @@ void playGame_Render() {
   if (playGameVars.showSaveDialogue && playGameVars.counter == 0) {
 
     uint8_t c;
-		EEPROM.get(100, c);
+		EEPROM.get(101, c);
 
     drawMessageBox(c == 'c' ? 3 : 2, 88);
     font3x6.setCursor(40, 4);
