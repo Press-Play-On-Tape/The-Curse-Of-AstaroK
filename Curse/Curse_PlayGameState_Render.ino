@@ -25,6 +25,7 @@ void playGame_Render() {
         ardBitmap.drawCompressed(x + 90, 3, Images::Cloud_02, WHITE, MIRROR_NONE);
       }
 
+
       playGame_RenderTrees(playGameVars.world.buildingXPos);
       playGame_RenderTownItems(RenderPosition::Background);
 
@@ -530,6 +531,16 @@ void playGame_Render() {
 // auto x = (playGameVars.world.buildingXPos - playGameVars.player.getX());
 // drawMessageBox(2, 112);
 // font3x6.print(x);
+
+
+
+  if (mrBlinky < 80) {
+
+    SpritesB::drawExternalMask(playGameVars.world.buildingXPos + Constants::Tombstone_Locations[0] + ((mrBlinky / 16) - 8), mrBlinky, Images::MrBlinky, Images::MrBlinky_Mask, 0, 0);
+    mrBlinky = mrBlinky - 2;
+
+  }
+
 
   arduboy.displayWithBackground(timeOfDay);
 

@@ -174,28 +174,30 @@ void Font3x6::print(const __FlashStringHelper *str)
 
 void Font3x6::printMessage(uint8_t idx)
 {
-  this->printMessage(idx, messages);
+  this->printMessage(idx, messages, true);
 }
 
 
-void Font3x6::printMessage(uint8_t idx, const uint8_t *messagesArray) {
+void Font3x6::printMessage(uint8_t idx, const uint8_t *messagesArray, bool eighty) {
 
   const uint8_t *p = messagesArray;
   while (idx) {
     while(1) {  
       uint8_t c = pgm_read_byte(p) ;
       ++p;
-      if (c == 0x80) break;
+      if (eighty && c == 0x80) break;
+      if (!eighty && (c & 0x80) > 0) break;
     }
     --idx;
   }
   while (1) {
     uint8_t c = pgm_read_byte(p);
-    if (c == 0x80) {
+    if ((eighty && c == 0x80) || (!eighty && (c & 0x80) > 0)) {
+      if (!eighty) write(c & 0x7f);
       break;
     } 
     else if (c >= 0x80) {
-      this->printMessage( (c & 0x7f) - 1, keywords);
+      this->printMessage( (c & 0x7f) - 1, keywords, false);
     }
     else  {
       write(c);

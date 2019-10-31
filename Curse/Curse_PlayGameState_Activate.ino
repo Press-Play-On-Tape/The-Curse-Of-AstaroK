@@ -13,16 +13,16 @@ constexpr World world PROGMEM {
 	},
 	{
 		TownItem(ItemType::HP, -140, RenderPosition::FrontOfBuildings),
-		TownItem(ItemType::NPC, Constants::NPC_Location_01, RenderPosition::FrontOfBuildings),
-		TownItem(ItemType::NPC, Constants::NPC_Location_02, RenderPosition::FrontOfBuildings),
-		TownItem(ItemType::NPC, Constants::NPC_Location_03, RenderPosition::FrontOfBuildings),
+		TownItem(ItemType::NPC, Constants::NPC_Locations[0], RenderPosition::FrontOfBuildings),
+		TownItem(ItemType::NPC, Constants::NPC_Locations[1], RenderPosition::FrontOfBuildings),
+		TownItem(ItemType::NPC, Constants::NPC_Locations[2], RenderPosition::FrontOfBuildings),
 		TownItem(ItemType::Pumpkin, -155),
 		TownItem(ItemType::Castle_01, 293),
 		TownItem(ItemType::Castle_02, 293, RenderPosition::FrontOfPlayer),
 		TownItem(ItemType::Crates, -256, RenderPosition::FrontOfBuildings),
-		TownItem(ItemType::Tombstone, Constants::Tombstone_Location_01, RenderPosition::FrontOfBuildings),
-		TownItem(ItemType::Tombstone, Constants::Tombstone_Location_02, RenderPosition::FrontOfBuildings),
-		TownItem(ItemType::Tombstone, Constants::Tombstone_Location_03, RenderPosition::FrontOfBuildings),
+		TownItem(ItemType::Tombstone, Constants::Tombstone_Locations[0], RenderPosition::FrontOfBuildings),
+		TownItem(ItemType::Tombstone, Constants::Tombstone_Locations[1], RenderPosition::FrontOfBuildings),
+		TownItem(ItemType::Tombstone, Constants::Tombstone_Locations[2], RenderPosition::FrontOfBuildings),
 		TownItem(ItemType::SavingPost, Constants::SavingPost_Location, RenderPosition::FrontOfBuildings),
 	}
 };

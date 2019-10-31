@@ -37,7 +37,7 @@ const uint8_t PROGMEM Levels[] = {
 const uint8_t PROGMEM RuneCombinations[] = {
                                         // 1,2,3,4,5, SP (cost), DMG1, DMG2, DMG3, HP
   1, 1, 7, 4, 4, 30, 20, 5, 5, 0,       // Fire Blaze
-  2, 2, 4, 4, 4, 25, 0, 0, 0, 20,       // Healing Wind
+  2, 2, 4, 4, 4, 25, 25, 0, 0, 20,      // Healing Wind
   1, 1, 5, 3, 3, 35, 35, 0, 0, 0,       // Rising Star
   6, 6, 6, 6, 6, 30, 20, 2, 2, 0,       // Venom Mist
 };
@@ -108,17 +108,19 @@ namespace Constants {
   constexpr uint8_t Inventory_NoAction = 255; // How many potions can we carry?
   constexpr uint8_t Tree_Count = 5;
 
-  constexpr int16_t Tombstone_Location_01 = -190;
-  constexpr int16_t Tombstone_Location_02 = -203;
-  constexpr int16_t Tombstone_Location_03 = -216;
+  // constexpr int16_t Tombstone_Location_01 = -190;
+  // constexpr int16_t Tombstone_Location_02 = -203;
+  // constexpr int16_t Tombstone_Location_03 = -216;
 
-  constexpr int16_t Tombstone_Locations[3] = { Tombstone_Location_01, Tombstone_Location_02, Tombstone_Location_03 };
+  // constexpr int16_t Tombstone_Locations[3] = { Tombstone_Location_01, Tombstone_Location_02, Tombstone_Location_03 };
+  constexpr int16_t Tombstone_Locations[3] = { -190, -203, -216 };
   
-  constexpr int16_t NPC_Location_01 = -80;
-  constexpr int16_t NPC_Location_02 = -8;
-  constexpr int16_t NPC_Location_03 = 240;
+  // constexpr int16_t NPC_Location_01 = -80;
+  // constexpr int16_t NPC_Location_02 = -8;
+  // constexpr int16_t NPC_Location_03 = 240;
 
-  constexpr int16_t NPC_Locations[3] = { NPC_Location_01, NPC_Location_02, NPC_Location_03 };
+  // constexpr int16_t NPC_Locations[3] = { NPC_Location_01, NPC_Location_02, NPC_Location_03 };
+  constexpr int16_t NPC_Locations[3] = { -80, -8, 240 };
 
   constexpr int16_t SavingPost_Location = -110;
 }

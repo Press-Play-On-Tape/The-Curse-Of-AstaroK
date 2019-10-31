@@ -39,7 +39,7 @@ const uint8_t Astarok_Name[] PROGMEM = "ASTAROK";
 
 //from Constants.h
 const uint8_t Tombstone_Inscription_00[] PROGMEM = "   Here lies Vampirics.\n  Born 1843 - Dec 1882";
-const uint8_t Tombstone_Inscription_01[] PROGMEM = " Rest In Peace Filmote.\n  Born 1841 - Dec 1879";
+const uint8_t Tombstone_Inscription_01[] PROGMEM = " Rest In Peace Filmote.\n  Born 1841 - Dec 1889";
 const uint8_t Tombstone_Inscription_02[] PROGMEM = "   Press Play On Tape\n     Developed 2019";
 
 const uint8_t Dialogue_00[] PROGMEM = "Welcome traveller to the town";

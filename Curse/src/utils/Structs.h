@@ -104,10 +104,11 @@ struct PlayGameStateVars {
   World world;
   Inventory inventory;
 
- };
+};
 
 struct GameOverStateVars {
   uint8_t winner;
   uint8_t counter;
   uint8_t index;
 };
+

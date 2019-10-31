@@ -30,6 +30,7 @@ SplashScreenStateVars splashScreenVars;
 TitleScreenStateVars titleScreenVars;
 PlayGameStateVars playGameVars;
 GameOverStateVars gameOverVars;
+int8_t mrBlinky = 127;
 
 void setup() {
 
