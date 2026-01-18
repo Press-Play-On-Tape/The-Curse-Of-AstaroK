@@ -553,16 +553,16 @@ void playGame_Update() {
 								playGame_ChangeViewState(ViewState::InDungeon_EnemysTurn);
 							}
 							else {
-								if (playGameVars.matchedRuneCombination.dmg1 > 0) {
-									playGameVars.counter = Constants::DialogueDelay_Fight_Damage_ThisRoll;
-								}
-								else if (playGameVars.matchedRuneCombination.hp > 0) {
+								if (playGameVars.matchedRuneCombination.hp > 0) {
 									playGameVars.counter = Constants::DialogueDelay_Fight_Health;
+								}
+								else if (playGameVars.matchedRuneCombination.dmg1 > 0) {
+									playGameVars.counter = Constants::DialogueDelay_Fight_Damage_ThisRoll;
 								}
 							}
 						}
 						break;
-
+						
 					case Constants::DialogueDelay_Fight_Damage_ThisRoll:
 						playGameVars.message.renderRequired = true;
 						if (justPressed & A_BUTTON) {
@@ -654,9 +654,14 @@ void playGame_Update() {
 								playGameVars.counter = Constants::DialogueDelay_Fight_Damage_PrevRoll;
 							}
 							else {
-								playGameVars.player.incHP(playGameVars.matchedRuneCombination.hp);
-								playGameVars.counter = Constants::DialogueDelay_Enemy_Roll;
-								playGame_ChangeViewState(ViewState::InDungeon_EnemysTurn);
+								playGameVars.player.incHP(playGameVars.matchedRuneCombination.hp);							
+								if (playGameVars.matchedRuneCombination.id == static_cast<uint8_t>(RuneCombinationType_Purchased::HealingWind)) { // Need to apply the damage to enemy ..
+									playGameVars.counter = Constants::DialogueDelay_Fight_Damage_ThisRoll;
+								}
+								else {
+									playGameVars.counter = Constants::DialogueDelay_Enemy_Roll;
+									playGame_ChangeViewState(ViewState::InDungeon_EnemysTurn);
+								}
 							}
 						}
 						break;
@@ -708,6 +713,13 @@ void playGame_Update() {
 								// playGameVars.runes.getRune(1).setValue(1);
 								// playGameVars.runes.getRune(2).setValue(2);
 								// playGameVars.runes.getRune(3).setValue(3);
+
+								// Healing Wind
+								// playGameVars.runes.getRune(0).setValue(2);
+								// playGameVars.runes.getRune(1).setValue(2);
+								// playGameVars.runes.getRune(2).setValue(4);
+								// playGameVars.runes.getRune(3).setValue(4);
+								// playGameVars.runes.getRune(4).setValue(4);
 																															
 									MatchedRuneCombination matchedRuneCombination;
 									playGameVars.runes.checkRuneCombination(playGameVars.player, matchedRuneCombination);
@@ -760,7 +772,7 @@ void playGame_Update() {
 
 							if (!playGameVars.runes.anyRotatingOrRerolling() && playGameVars.reroll == playGameVars.numberOfRecasts) {
 
-							// Firee Blaze
+							// Fire Blaze
 							// playGameVars.runes.getRune(0).setValue(1);
 							// playGameVars.runes.getRune(1).setValue(1);
 							// playGameVars.runes.getRune(2).setValue(3);
@@ -772,6 +784,12 @@ void playGame_Update() {
 							// playGameVars.runes.getRune(2).setValue(2);
 							// playGameVars.runes.getRune(3).setValue(3);
 
+							// Healing Wind
+							// playGameVars.runes.getRune(0).setValue(2);
+							// playGameVars.runes.getRune(1).setValue(2);
+							// playGameVars.runes.getRune(2).setValue(4);
+							// playGameVars.runes.getRune(3).setValue(4);
+							// playGameVars.runes.getRune(4).setValue(4);
 
 								playGameVars.runes.checkRuneCombination(playGameVars.player, playGameVars.matchedRuneCombination);
 								playGameVars.message.message = 0;

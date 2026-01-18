@@ -39,7 +39,7 @@ void Runes::checkRuneCombination(Player &player, MatchedRuneCombination &matched
   sort(sortedRunes, 5);
 
 
-  // Check for venom mist first ..
+  // Check for venom mist ..
 
   if (player.getRuneCombination(static_cast<uint8_t>(RuneCombinationType_Purchased::VenomMist)) > 0 && sortedRunes[0] != sortedRunes[1] && sortedRunes[1] != sortedRunes[2] && sortedRunes[2] != sortedRunes[3] && sortedRunes[3] != sortedRunes[4] ){
 
@@ -51,6 +51,18 @@ void Runes::checkRuneCombination(Player &player, MatchedRuneCombination &matched
 
   }
 
+  // Check for healing wind ..
+
+  if (player.getRuneCombination(static_cast<uint8_t>(RuneCombinationType_Purchased::HealingWind) && sortedRunes[0] == 2 && sortedRunes[1] == 2 && sortedRunes[2] == 4 && sortedRunes[3] == 4 && sortedRunes[4] == 4) > 0) {
+
+    matchedRuneCombination.id = static_cast<uint8_t>(RuneCombinationType_Purchased::HealingWind);
+    memcpy_P(&matchedRuneCombination.dmg1, &RuneCombinations[(matchedRuneCombination.id * Constants::RuneCombinations_RecordLength) + Constants::RuneCombinations_DMG_1], 4);
+    matchedRuneCombination.hp = pgm_read_byte(&RuneCombinations[(matchedRuneCombination.id * Constants::RuneCombinations_RecordLength) + Constants::RuneCombinations_HP]) + helmetAttack;
+    matchedRuneCombination.dmg2Type = Constants::RuneCombination_FullHouse_Score + helmetAttack;
+    matchedRuneCombination.dmg3Type = 0;
+    return;
+
+  }
 
 
   // Does the combination match a bought rune?

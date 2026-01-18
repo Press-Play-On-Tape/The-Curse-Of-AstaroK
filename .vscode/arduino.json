@@ -1,8 +1,8 @@
 {
-    "board": "arduboy-homemade:avr:arduboy",
+    "board": "arduboy-homemade:avr:arduboy-homemade",
     "sketch": "Curse/Curse.ino",
     "output": "../build",
-    "port": "COM3",
+    "port": "/dev/tty.usbmodem14101",
     "programmer": "AVR ISP",
-    "configuration": "core=arduboy-core,boot=cathy3kg"
+    "configuration": "based_on=promicro_alt,boot=cathy3k,core=arduboy-core,display=ssd1306,flashselect=rx,contrast=normal"
 }
